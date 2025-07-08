@@ -4,8 +4,13 @@ import './index.css'
 import { RouterProvider } from 'react-router'
 import { router } from './Route/Route.jsx'
 import 'flowbite';
+import AuthProvider from './Providers/AuthProvider.jsx'
+ import { ToastContainer } from 'react-toastify';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router}/>
+     <ToastContainer />
+    </AuthProvider>
   </StrictMode>,
 )
