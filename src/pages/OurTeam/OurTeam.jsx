@@ -55,14 +55,14 @@ const teamMembers = [
 const OurTeam = () => {
   return (
     <section className="py-20 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-11/12 mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-4">Meet Our Professionals</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Our dedicated team members work day and night to ensure the best employee experience.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {teamMembers.map((member, idx) => (
             <div
               key={idx}
