@@ -1,17 +1,17 @@
 
-
-
-
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { AiOutlineBars } from "react-icons/ai";
 import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
+import Employee from "../Employee/Employee";
+import HumanResource from "../HumanResource/HumanResource";
+import Admin from "../Admin/Admin";
 
 
 const Sidebar = () => {
-  const { logOut } = useAuth();
+  const { userLogout } = useAuth();
   const [isActive, setActive] = useState(true);
 //   const [role,isLoading]=useRole()
 //   console.log(role,isLoading)
@@ -64,15 +64,12 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
-            <nav className="text-white">
-                world
-                world
-                world
-
-              {/*  Menu Items */}
-              {/* {role ==='customer' &&    <CustomerMenu />} */}
-              {/* {role ==='seller' &&   <SellerMenu />} */}
-              {/* {role ==='admin' && <AdminMenu/>} */}
+            <nav className="text-black">
+            
+              <Employee/>
+              <HumanResource/>
+              <Admin/>
+           
 
              
             </nav>
@@ -88,7 +85,7 @@ const Sidebar = () => {
             address="/dashboard/profile"
           /> */}
           <button
-            onClick={logOut}
+            onClick={userLogout}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />

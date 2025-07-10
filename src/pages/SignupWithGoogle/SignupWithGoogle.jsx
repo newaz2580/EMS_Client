@@ -1,14 +1,24 @@
 import React from "react";
 import useAuth from "../../Component/hooks/useAuth";
 import { toast } from "react-toastify";
+import { saveUserInfo } from "../../Api/Utils";
 
 const SignupWithGoogle = () => {
-  const { userSignUpWithGoogle } = useAuth();
+  const { userSignUpWithGoogle} = useAuth();
   const handleSignUpGoogle=()=>{
     userSignUpWithGoogle()
     .then(result=>{
         console.log(result)
         toast.success('SignIn Successful')
+        const name=result.user.displayName;
+        const email=result.user.email;
+        const photoURL=result.user.photoURL;
+        const userData={name,email,photoURL}
+        userData.designation='Sales Assistant';
+        userData.bank_account_no='254687562322';
+        userData.salary='25000';
+        userData.userRole="Employee"
+        saveUserInfo(userData)
     }).catch(error=>{
         console.log(error)
     })

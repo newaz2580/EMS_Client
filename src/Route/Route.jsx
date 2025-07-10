@@ -6,11 +6,18 @@ import SignUp from "../pages/SignUp/SignUp";
 import DashboardLayout from "../Layout/DashboardLayout";
 import WorkSheet from "../Component/Dashboard/Employee/Work-sheet";
 import PaymentHistory from "../Component/Dashboard/Employee/PaymentHistory";
+import ErrorPage from "../Component/ErrorPage/ErrorPage";
+import EmployeeList from "../Component/Dashboard/HumanResource/EmployeeList";
+import EmployeeDetails from "../Component/Dashboard/HumanResource/EmployeeDetails";
+import Progress from "../Component/Dashboard/HumanResource/Progress";
+import AllEmployeeList from "../Component/Dashboard/Admin/AllEmployeeList";
+import Payroll from "../Component/Dashboard/Admin/Payroll";
 
 export const router=createBrowserRouter([
     {
      path:'/',
      Component:MainLayout,
+     errorElement:<ErrorPage/>,
      children:[
      {
         path:'/',
@@ -31,12 +38,32 @@ export const router=createBrowserRouter([
       element:<DashboardLayout/>,
       children:[
          {
-            index:true,
+            path:'workSheet',
             element:<WorkSheet/>
          },
          {
             path:'paymentHistory',
-            element:PaymentHistory,
+            element:<PaymentHistory/>,
+         },
+         {
+            path:'employeeList',
+            element:<EmployeeList/>
+         },
+         {
+            path:'employeeDetails',
+            element:<EmployeeDetails/>
+         },
+         {
+            path:'progress',
+            element:<Progress/>
+         },
+         {
+            path:'allEmployeeList',
+            element:<AllEmployeeList/>
+         },
+         {
+            path:'payroll',
+            element:<Payroll/>
          }
       ]
     }
