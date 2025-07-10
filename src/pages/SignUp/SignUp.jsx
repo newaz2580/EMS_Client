@@ -34,7 +34,7 @@ const Signup = () => {
         bank_account_no,
         salary,
         imageURL,
-        Role: userRole,
+        role: userRole,
       };
       console.log(userData);
       await saveUserInfo(userData);
@@ -192,8 +192,8 @@ const Signup = () => {
                       <option value="" disabled>
                         -- Select Role --
                       </option>
-                      <option value="Employee">Employee</option>
-                      <option value="HR">HR</option>
+                      <option value="Employee">employee</option>
+                      <option value="HR">hr</option>
                     </select>
                   </div>
                 </div>

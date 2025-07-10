@@ -1,6 +1,10 @@
 import React from 'react';
-
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import UserRole from '../../hooks/userRole';
 const WorkSheet = () => {
+    const [role]=UserRole()
+    console.log(role)
     return (
         <div>
             <h2>WorkSheetss</h2>
@@ -19,7 +23,9 @@ const WorkSheet = () => {
         
         <input type="number" placeholder='enter your hourly work' />
     </th>
-    <th>Country</th>
+    <th>
+        <DatePicker/> 
+    </th>
     <th><button className='btn'>Add</button></th>
   </tr>
   <tr>
