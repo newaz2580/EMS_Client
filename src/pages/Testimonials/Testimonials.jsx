@@ -35,17 +35,19 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="max-w-full mx-auto px-4 mt-10">
+    <div className="max-w-11/12 mx-auto px-4 my-10">
+      <h2 className="text-center text-3xl font-bold py-10">Testimonials</h2>
       <Slider {...settings}>
         {[1, 2, 3, 4, 5, 6].map((item) => (
           <div key={item} className="px-2">
             <div className="bg-white rounded-lg shadow p-4 text-center">
-              <h3 className="text-lg font-semibold mb-2">Testimonial {item}</h3>
+              <h3 className="text-lg font-semibold mb-2 text-black">Testimonial {item}</h3>
               <img
                 src="https://i.ibb.co/hxnmj8fX/m3.jpg"
                 alt="User"
                 className="mx-auto w-24 h-24 rounded-full object-cover"
               />
+              <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum, vitae culpa iusto consequatur cumque error quia provident odio eius delectus perspiciatis modi illo tempore repellat qui inventore earum quisquam?</p>
             </div>
           </div>
         ))}
