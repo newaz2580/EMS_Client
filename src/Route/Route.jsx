@@ -12,6 +12,7 @@ import EmployeeDetails from "../Component/Dashboard/HumanResource/EmployeeDetail
 import Progress from "../Component/Dashboard/HumanResource/Progress";
 import AllEmployeeList from "../Component/Dashboard/Admin/AllEmployeeList";
 import Payroll from "../Component/Dashboard/Admin/Payroll";
+import ContactUS from "../pages/Contact/ContactUS";
 
 export const router=createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router=createBrowserRouter([
      {
       path:'/signup',
       Component:SignUp
+     },
+     {
+      path:'contact',
+      element:<ContactUS></ContactUS>
      }
      ]
     },

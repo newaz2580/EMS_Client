@@ -28,6 +28,7 @@
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.22.2",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
