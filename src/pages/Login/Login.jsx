@@ -23,6 +23,7 @@ const Login = () => {
             userData.designation='Sales Assistant';
             userData.bank_account_no='254687562322';
             userData.salary='25000';
+            userData.status='active'
             userData.userRole="Employee"
             saveUserInfo(userData)
     toast.success('Login Successful')

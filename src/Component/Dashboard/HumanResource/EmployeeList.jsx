@@ -9,26 +9,27 @@ const EmployeeList = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure("/users");
-      
 
       return res.data;
     },
   });
   console.log(data);
 
-const handleVerified = async (id) => {
-  try {
-    const { data } = await axiosSecure.patch(`/users/${id}`);
+  const handleVerified = async (id, isVerified) => {
+    try {
+      const { data } = await axiosSecure.patch(`/users/${id}`, {
+        isVerified: !isVerified, // 🔁 Toggle the current status
+      });
 
-    if (data.modifiedCount > 0) {
-      toast.success("Verified successful");
-      refetch();
+      if (data.modifiedCount > 0) {
+        toast.success("Verified status updated");
+        refetch();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update verification");
     }
-  } catch (error) {
-    console.log(error);
-    toast.error("Failed to verify user");
-  }
-};
+  };
 
   return (
     <div>
@@ -49,9 +50,15 @@ const handleVerified = async (id) => {
             <tr key={userData._id}>
               <td>{userData.name}</td>
               <td>{userData.email}</td>
-              <td>{userData.isVerified ?
-               <button>✅</button> : 
-                <button onClick={()=>handleVerified(userData._id)}>❌</button>}</td>
+              <td>
+                <button
+                  onClick={() =>
+                    handleVerified(userData._id, userData.isVerified)
+                  }
+                >
+                  {userData.isVerified ? "✅" : "❌"}
+                </button>
+              </td>
               <td>{userData.bank_account_no}</td>
               <td>{userData.salary}</td>
               <td>pay</td>

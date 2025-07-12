@@ -19,7 +19,7 @@ const Banner = () => {
                 <div>
                     <img
                         className="max-h-[500px] w-full object-cover"
-                        src="https://i.ibb.co/vCPL0xtB/jonathan-zerger-yzz-Jbq-Q1-O-Y-unsplash.jpg"
+                        src="https://i.ibb.co/gbh0VYvk/banner-1.webp"
                         alt="Banner 1"
                     />
                     <p className="legend">Legend 1</p>
@@ -27,7 +27,7 @@ const Banner = () => {
                 <div>
                     <img
                         className="max-h-[500px] w-full object-cover"
-                        src="https://i.ibb.co/jvRxZ7G5/neom-e-OWabm-CNEdg-unsplash.jpg"
+                        src="https://i.ibb.co/674ttPz9/banner-2.jpg"
                         alt="Banner 2"
                     />
                     <p className="legend">Legend 2</p>
@@ -35,7 +35,7 @@ const Banner = () => {
                 <div>
                     <img
                         className="max-h-[500px] w-full object-cover"
-                        src="https://i.ibb.co/LDfTrYtZ/mesut-kaya-e-Ocyhe5-9s-Q-unsplash.jpg"
+                        src="https://i.ibb.co/n86FkTMC/image-2.jpg"
                         alt="Banner 3"
                     />
                     <p className="legend">Legend 3</p>

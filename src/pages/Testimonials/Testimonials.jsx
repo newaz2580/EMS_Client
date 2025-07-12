@@ -35,7 +35,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto px-4 my-10">
+    <div className="max-w-11/12 mx-auto px-4 my-10 bg-white">
       <h2 className="text-center text-3xl font-bold py-10">Testimonials</h2>
       <Slider {...settings}>
         {[1, 2, 3, 4, 5, 6].map((item) => (
