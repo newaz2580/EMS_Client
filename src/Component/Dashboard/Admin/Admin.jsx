@@ -9,6 +9,8 @@ const Admin = () => {
         <div>
             <MenuItem icon={BsFingerprint} label='All Employee List' address='allEmployeeList' />
             <MenuItem icon={BsFingerprint} label='Payroll' address='payroll' />
+            <MenuItem icon={BsFingerprint} label='FeedBack' address='feedback' />
+
             
         </div>
     );
