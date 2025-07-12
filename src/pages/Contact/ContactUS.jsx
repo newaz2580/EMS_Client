@@ -6,41 +6,63 @@ const ContactUS = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const axiosSecure = useAxiosSecure();
+
   const handleMessage = async (e) => {
     e.preventDefault();
     const feedBack = { email, message };
     try {
       const { data } = await axiosSecure.post("/user/message", feedBack);
-      console.log(data);
       if (data.insertedId) {
         Swal.fire({
-          title: "Drag me!",
+          title: "Message Sent!",
+          text: "Thanks for contacting us!",
           icon: "success",
-          draggable: true,
+          confirmButtonText: "OK",
         });
+        setEmail("");
+        setMessage("");
       }
     } catch (error) {
-        console.log(error)
+      console.error(error);
     }
   };
+
   return (
-    <div>
-      <h2>Contact us</h2>
-      <h1>EMS Company </h1>
-      <p>Paratuly,Bancharampur,Brahmanbaria</p>
-      <form onSubmit={handleMessage}>
+    <div className="flex flex-col md:flex-row justify-center items-center gap-12 p-10">
+      {/* Contact Info */}
+      <div className="text-center md:text-left space-y-4">
+        <h2 className="text-3xl font-bold text-blue-700">Contact Us</h2>
+        <h3 className="text-xl font-semibold">EMS Company</h3>
+        <p className="text-gray-600">Paratuly, Bancharampur, Brahmanbaria</p>
+      </div>
+
+      {/* Contact Form */}
+      <form
+        onSubmit={handleMessage}
+        className="bg-white shadow-md rounded-lg p-6 w-full max-w-md space-y-4"
+      >
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email"
+          placeholder="Your Email"
+          required
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Send your Message"
+          required
+          rows="5"
+          className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         ></textarea>
-        <button type="submit">Send Message</button>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
+          Send Message
+        </button>
       </form>
     </div>
   );
