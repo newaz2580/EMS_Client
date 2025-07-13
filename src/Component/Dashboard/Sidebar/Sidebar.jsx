@@ -8,12 +8,14 @@ import { Link, NavLink } from "react-router";
 import Employee from "../Employee/Employee";
 import HumanResource from "../HumanResource/HumanResource";
 import Admin from "../Admin/Admin";
+import useUserRole  from "../../hooks/userRole";
 
 
 const Sidebar = () => {
   const { userLogout } = useAuth();
   const [isActive, setActive] = useState(true);
-//   const [role,isLoading]=useRole()
+  const [role]=useUserRole ()
+  console.log(role)
 //   console.log(role,isLoading)
 
   // Sidebar Responsive Handler
@@ -65,10 +67,12 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav className="text-black">
-            
-              <Employee/>
-              <HumanResource/>
-              <Admin/>
+             <Employee/>
+             <HumanResource/>
+             <Admin/>
+              {/* {role==='Employee' && <Employee/>}
+              {role ==='HR' && <HumanResource/>}
+              {role ==='admin' && <Admin/>} */}
            
 
              

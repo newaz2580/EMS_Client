@@ -41,7 +41,7 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/login">
-                <button className="ml-3">Login</button>
+                <button className="ml-3 text-amber-50">Login</button>
               </Link>
             </>
           )}

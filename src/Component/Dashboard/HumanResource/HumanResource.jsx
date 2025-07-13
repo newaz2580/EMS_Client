@@ -1,21 +1,20 @@
-import React from 'react';
-import EmployeeList from './EmployeeList';
-import EmployeeDetails from './EmployeeDetails';
-import Progress from './Progress';
-import MenuItem from '../MenuItem';
-import { BsFingerprint } from 'react-icons/bs';
+import React from "react";
+import MenuItem from "../MenuItem";
+
+import { FaUsers, FaUserTie, FaChartLine } from "react-icons/fa";
 
 const HumanResource = () => {
-    return (
-        <div>
-             
-             <MenuItem icon={BsFingerprint} label='Employee List' address='employeeList' />
-             <MenuItem icon={BsFingerprint} label='Employee Details' address='employeeDetails' />
-             <MenuItem icon={BsFingerprint} label='Progress' address='progress' />
-
-          
-        </div>
-    );
+  return (
+    <div>
+      <MenuItem icon={FaUsers} label="Employee List" address="employeeList" />
+      <MenuItem
+        icon={FaUserTie}
+        label="Employee Details"
+        address="employeeDetails"
+      />
+      <MenuItem icon={FaChartLine} label="Progress" address="progress" />
+    </div>
+  );
 };
 
 export default HumanResource;

@@ -28,7 +28,7 @@ const ContactUS = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-12 p-10">
+    <div className="flex flex-col  justify-center items-center gap-12 p-10">
       {/* Contact Info */}
       <div className="text-center md:text-left space-y-4">
         <h2 className="text-3xl font-bold text-blue-700">Contact Us</h2>

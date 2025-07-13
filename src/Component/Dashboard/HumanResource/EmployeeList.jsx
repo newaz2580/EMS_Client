@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import PayModal from "./PayModal";
 
 const EmployeeList = () => {
   const axiosSecure = useAxiosSecure();
+   let [isOpen, setIsOpen] = useState(false)
   const { data, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -61,7 +63,12 @@ const EmployeeList = () => {
               </td>
               <td>{userData.bank_account_no}</td>
               <td>{userData.salary}</td>
-              <td>pay</td>
+              <td>
+                <button disabled={!userData.isVerified} onClick={() => setIsOpen(true)} className={`${userData.isVerified ? 'cursor-pointer btn':'opacity-50 cursor-not-allowed'}`}>
+                  Pay
+                </button>
+                <PayModal isOpen={isOpen} setIsOpen={setIsOpen} userData={userData}/>
+                </td>
               <th>detail</th>
             </tr>
           ))}
