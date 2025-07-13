@@ -1,5 +1,4 @@
 import {
-  Description,
   Dialog,
   DialogPanel,
   DialogTitle,
@@ -51,8 +50,8 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
             onSubmit={handlePayment}
             class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           >
-            <div class="mb-1 flex flex-col gap-6">
-              <div class="w-full max-w-sm min-w-[200px]">
+            <div className="mb-1 flex flex-col gap-6">
+              <div className="w-full max-w-sm min-w-[200px]">
                 <label class="block mb-2 text-sm text-slate-600">
                   Your Salary
                 </label>
@@ -60,23 +59,23 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
                   type="text"
                   defaultValue={salary}
                   name="salary"
-                  class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Your salary"
                   readOnly
                 />
               </div>
-              <div class="w-full max-w-sm min-w-[200px]">
+              <div className="w-full max-w-sm min-w-[200px]">
                 <label class="block mb-2 text-sm text-slate-600">
                   Payment Month
                 </label>
                 <input
                   type="text"
                   name="month"
-                  class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Your payment Month"
                 />
               </div>
-              <div class="w-full max-w-sm min-w-[200px]">
+              <div className="w-full max-w-sm min-w-[200px]">
                 <label class="block mb-2 text-sm text-slate-600">
                   Payment Year
                 </label>
