@@ -22,9 +22,11 @@ const UserFeedBack = () => {
     return (
         <div>
             <h1>UserFeedback</h1>
-            {
+            <div>
+                {
                 message?.map(mess=><Message key={mess._id} message={mess}></Message>)
             }
+            </div>
         </div>
     );
 };
