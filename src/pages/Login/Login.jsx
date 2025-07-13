@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../Component/hooks/useAuth";
 import { toast } from "react-toastify";
 import SignupWithGoogle from "../SignupWithGoogle/SignupWithGoogle";
@@ -7,15 +7,18 @@ import { saveUserInfo } from "../../Api/Utils";
 
 const Login = () => {
   const {signInUser}=useAuth()
+  const [loading,setLoading]=useState(false)
+  const navigate=useNavigate()
   const handleLogin=(e)=>{
   e.preventDefault()
+  setLoading(true)
   const form=e.target;
   const email=form.email.value;
   const password=form.password.value;
-  console.log(email,password)
+  // console.log(email,password)
   signInUser(email,password)
   .then(result=>{
-    console.log(result)
+    // console.log(result)
      const name=result.user.displayName;
             const email=result.user.email;
             const photoURL=result.user.photoURL;
@@ -26,9 +29,12 @@ const Login = () => {
             userData.status='active'
             userData.userRole="Employee"
             saveUserInfo(userData)
-    toast.success('Login Successful')
+            toast.success('Login Successful')
+            navigate('/')
+            setLoading(false)
   }).catch(error=>{
-    console.log(error)
+    toast.error(error)
+    setLoading(false)
   })
   }
   return (
@@ -79,9 +85,10 @@ const Login = () => {
                
                 <button
                   type="submit"
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  disabled={loading}
+                  className="btn btn-primary w-full"
                 >
-                  Login
+                  {loading ? <span className='loading loading-spinner loading-sm'></span>:'Login'}
                 </button>
                 <div>
                   <SignupWithGoogle/>

@@ -3,6 +3,49 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const testimonials = [
+  {
+    name: "Sarah Ahmed",
+    image: "https://i.ibb.co/5hvQk2Jj/girls1.jpg",
+    text: "Joining this company was one of the best decisions I’ve made. The work culture is supportive and inspiring.",
+  },
+  {
+    name: "John Rahman",
+    image: "https://i.ibb.co/B3HXYTf/m2.jpg",
+    text: "I truly appreciate the leadership team for their clear communication and vision. It makes daily tasks much more meaningful.",
+  },
+  {
+    name: "Anika Sultana",
+    image: "https://i.ibb.co/v4KtTPct/g2.jpg",
+    text: "The level of trust and flexibility offered here allows me to perform at my best while maintaining work-life balance.",
+  },
+  {
+    name: "Tanvir Hasan",
+    image: "https://i.ibb.co/nry7C1p/m4.jpg",
+    text: "Every project feels like a chance to learn and grow. My ideas are always welcomed, and that keeps me motivated.",
+  },
+  {
+    name: "Emily Chowdhury",
+    image: "https://i.ibb.co/nqzVCJgK/women1.jpg",
+    text: "It’s refreshing to be in a company that actually listens to its employees and acts on feedback.",
+  },
+  {
+    name: "Rezaul Karim",
+    image: "https://i.ibb.co/GQZKpm6/m5.jpg",
+    text: "Great team, strong ethics, and clear goals. I always feel like my contributions matter here.",
+  },
+  {
+    name: "Nusrat Jahan",
+    image: "https://i.ibb.co/xqpJ0frh/g3.webp",
+    text: "From onboarding to project delivery, everything is streamlined. It’s a joy to be part of such a well-run organization.",
+  },
+  {
+    name: "Imran Hossain",
+    image: "https://i.ibb.co/VB3WTfC/m6.jpg",
+    text: "This company helped me level up my career. The mentorship and growth opportunities are unmatched.",
+  },
+];
+
 const Testimonials = () => {
   const settings = {
     dots: true,
@@ -35,19 +78,19 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto px-4 my-10 bg-white">
+    <div className="max-w-7xl mx-auto px-4 my-10 bg-white">
       <h2 className="text-center text-3xl font-bold py-10">Testimonials</h2>
       <Slider {...settings}>
-        {[1, 2, 3, 4, 5, 6].map((item) => (
-          <div key={item} className="px-2">
+        {testimonials.map((item, index) => (
+          <div key={index} className="px-2">
             <div className="bg-white rounded-lg shadow p-4 text-center">
-              <h3 className="text-lg font-semibold mb-2 text-black">Testimonial {item}</h3>
               <img
-                src="https://i.ibb.co/hxnmj8fX/m3.jpg"
-                alt="User"
-                className="mx-auto w-24 h-24 rounded-full object-cover"
+                src={item.image}
+                alt={item.name}
+                className="mx-auto w-24 h-24 rounded-full object-cover mb-2"
               />
-              <p className="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum, vitae culpa iusto consequatur cumque error quia provident odio eius delectus perspiciatis modi illo tempore repellat qui inventore earum quisquam?</p>
+              <h3 className="text-lg font-semibold text-black">{item.name}</h3>
+              <p className="text-black mt-2 text-sm">{item.text}</p>
             </div>
           </div>
         ))}

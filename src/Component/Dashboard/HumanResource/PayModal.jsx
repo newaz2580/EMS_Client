@@ -19,8 +19,9 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
     const month = form.month.value;
     const year = form.year.value;
     const salaryInfo = { salary, month, year };
+    salaryInfo.EmployeeName=userData.name
     salaryInfo.requestedBy = user.email;
-    console.log(salaryInfo);
+    // console.log(salaryInfo);
     try {
       const { data } = await axiosSecure.post("/payment-request", salaryInfo);
       if (data.insertedId) {

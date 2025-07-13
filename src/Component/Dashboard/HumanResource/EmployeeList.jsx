@@ -6,7 +6,7 @@ import PayModal from "./PayModal";
 
 const EmployeeList = () => {
   const axiosSecure = useAxiosSecure();
-   let [isOpen, setIsOpen] = useState(false)
+   const [isOpen, setIsOpen] = useState(false)
   const { data, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const EmployeeList = () => {
       return res.data;
     },
   });
-  console.log(data);
+  // console.log(data);
 
   const handleVerified = async (id, isVerified) => {
     try {

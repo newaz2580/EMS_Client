@@ -32,7 +32,7 @@ const Payroll = () => {
         <tbody>
           {data.map(pay => (
             <tr key={pay._id}>
-              <td>{pay.employeeName}</td>
+              <td>{pay.EmployeeName}</td>
               <td>৳{pay.salary}</td>
               <td>{pay.month}</td>
               <td>{pay.year}</td>

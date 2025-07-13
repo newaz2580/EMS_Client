@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import WorkSheetModal from "../../../pages/Modal/WorkSheetModal";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const WorkSheet = () => {
   const { user } = useAuth();
@@ -84,7 +85,7 @@ const WorkSheet = () => {
   }
 };
 
-  if (isLoading) return <p>Loading......</p>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
