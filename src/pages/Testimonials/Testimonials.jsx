@@ -11,7 +11,7 @@ const testimonials = [
   },
   {
     name: "John Rahman",
-    image: "https://i.ibb.co/B3HXYTf/m2.jpg",
+    image: "https://i.ibb.co/0jkrSXw3/image.jpg",
     text: "I truly appreciate the leadership team for their clear communication and vision. It makes daily tasks much more meaningful.",
   },
   {
@@ -21,7 +21,7 @@ const testimonials = [
   },
   {
     name: "Tanvir Hasan",
-    image: "https://i.ibb.co/nry7C1p/m4.jpg",
+    image: "https://i.ibb.co/q3LfCFMX/image-11.jpg",
     text: "Every project feels like a chance to learn and grow. My ideas are always welcomed, and that keeps me motivated.",
   },
   {
@@ -31,7 +31,7 @@ const testimonials = [
   },
   {
     name: "Rezaul Karim",
-    image: "https://i.ibb.co/GQZKpm6/m5.jpg",
+    image: "https://i.ibb.co/1tgzcWRL/istockphoto-2160741889-612x612.webp",
     text: "Great team, strong ethics, and clear goals. I always feel like my contributions matter here.",
   },
   {
@@ -41,7 +41,7 @@ const testimonials = [
   },
   {
     name: "Imran Hossain",
-    image: "https://i.ibb.co/VB3WTfC/m6.jpg",
+    image: "https://i.ibb.co/ccJ62qpT/download.jpg",
     text: "This company helped me level up my career. The mentorship and growth opportunities are unmatched.",
   },
 ];

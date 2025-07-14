@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import PayModal from "./PayModal";
+import { Link, useParams } from "react-router";
 
 const EmployeeList = () => {
+  const {email}=useParams()
+  console.log(email)
   const axiosSecure = useAxiosSecure();
    const [isOpen, setIsOpen] = useState(false)
   const { data, refetch } = useQuery({
@@ -69,7 +72,9 @@ const EmployeeList = () => {
                 </button>
                 <PayModal isOpen={isOpen} setIsOpen={setIsOpen} userData={userData}/>
                 </td>
-              <th>detail</th>
+              <th><Link to={`/dashboard/employeeDetails/${userData.email}`}>
+  <button className="btn btn-info">Details</button>
+</Link></th>
             </tr>
           ))}
           <tr></tr>
