@@ -78,12 +78,12 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 my-10 bg-white">
+    <div className="max-w-11/12 mx-auto  my-10 bg-gray-100">
       <h2 className="text-center text-3xl font-bold py-10">Testimonials</h2>
       <Slider {...settings}>
         {testimonials.map((item, index) => (
           <div key={index} className="px-2">
-            <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="bg-white rounded-lg shadow p-4 h-64 my-5 text-center">
               <img
                 src={item.image}
                 alt={item.name}

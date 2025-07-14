@@ -7,10 +7,12 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import WorkSheetModal from "../../../pages/Modal/WorkSheetModal";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import Swal from "sweetalert2";
 
 const WorkSheet = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
 
   const [tasks, setTasks] = useState("");
   const [hours, setHours] = useState("");
@@ -19,6 +21,7 @@ const WorkSheet = () => {
   const [editing, setEditing] = useState(null);
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const newWork = {
       email: user?.email,
@@ -31,11 +34,13 @@ const WorkSheet = () => {
       console.log(res.data);
       toast.success("Data added Successfully");
       refetch();
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
- 
+
   const {
     data: workList,
     isLoading,
@@ -51,39 +56,54 @@ const WorkSheet = () => {
   // console.log(workList)
   const handleDelete = async (id) => {
     try {
-      const data = await axiosSecure.delete(`/workSheet/${id}`);
-      if (data.data.deletedCount) {
-        toast.success("Deleted Successful");
-        refetch();
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+      if (result.isConfirmed) {
+        const data = await axiosSecure.delete(`/workSheet/${id}`);
+        if (data.data.deletedCount) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your Tasks has been deleted.",
+            icon: "success",
+          });
+          refetch();
+        }
       }
     } catch (error) {
       console.log(error);
     }
   };
- const handleUpdate = async () => {
-  if (!editing) return;
-  
-  const { _id, tasks, hours, date } = editing;
+  const handleUpdate = async () => {
+    if (!editing) return;
 
-  try {
-    const res = await axiosSecure.patch(`/workSheet/${_id}`, {
-      tasks,
-      hours: Number(hours),
-      date,
-    });
+    const { _id, tasks, hours, date } = editing;
 
-    if (res.data.modifiedCount > 0) {
-      toast.success("✅ Task updated successfully!");
-      setEditing(null);
-      refetch();
-    } else {
-      toast.warning("⚠️ No changes detected.");
+    try {
+      const res = await axiosSecure.patch(`/workSheet/${_id}`, {
+        tasks,
+        hours: Number(hours),
+        date,
+      });
+
+      if (res.data.modifiedCount > 0) {
+        toast.success("✅ Task updated successfully!");
+        setEditing(null);
+        refetch();
+      } else {
+        toast.warning("⚠️ No changes detected.");
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+      toast.error("❌ Failed to update task.");
     }
-  } catch (error) {
-    console.error("Update error:", error);
-    toast.error("❌ Failed to update task.");
-  }
-};
+  };
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
   if (isError) return <p>Error: {isError.message}</p>;
@@ -127,9 +147,10 @@ const WorkSheet = () => {
 
         <button
           type="submit"
+          disabled={loading}
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
-          Add
+          {loading ? "Adding..." : "Add"}
         </button>
       </form>
 
@@ -143,31 +164,45 @@ const WorkSheet = () => {
           </tr>
         </thead>
         <tbody>
-          {workList?.map((item) => (
-            <tr key={item._id} className="border-t">
-              <td className="p-2">{item.tasks}</td>
-              <td className="p-2">{item.hours}</td>
-              <td className="p-2">{item.date}</td>
-              <td className="p-2">
-                <button
-                  onClick={() => setEditing(item)}
-                  className="text-blue-600 mr-3 cursor-pointer"
-                >
-                  🖊
-                </button>
-                <button
-                  onClick={() => handleDelete(item._id)}
-                  className="text-red-600 cursor-pointer"
-                >
-                  ❌
-                </button>
-              </td>
-            </tr>
-          ))}
+          {workList.length === 0 ? (
+            <>
+              <div>
+                <p className="text-center w-full">No Tasks Added Yet</p>
+              </div>{" "}
+            </>
+          ) : (
+            <>
+              {workList?.map((item) => (
+                <tr key={item._id} className="border-t">
+                  <td className="p-2">{item.tasks}</td>
+                  <td className="p-2">{item.hours}</td>
+                  <td className="p-2">{item.date}</td>
+                  <td className="p-2">
+                    <button
+                      onClick={() => setEditing(item)}
+                      className="text-blue-600 mr-3 cursor-pointer"
+                    >
+                      🖊
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      className="text-red-600 cursor-pointer"
+                    >
+                      ❌
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </>
+          )}
         </tbody>
       </table>
 
-     <WorkSheetModal editing={editing} setEditing={setEditing} handleUpdate={handleUpdate}/>
+      <WorkSheetModal
+        editing={editing}
+        setEditing={setEditing}
+        handleUpdate={handleUpdate}
+      />
     </div>
   );
 };

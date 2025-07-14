@@ -6,10 +6,10 @@ import PayModal from "./PayModal";
 import { Link, useParams } from "react-router";
 
 const EmployeeList = () => {
-  const {email}=useParams()
-  console.log(email)
+  const { email } = useParams();
+  console.log(email);
   const axiosSecure = useAxiosSecure();
-   const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const { data, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -67,14 +67,28 @@ const EmployeeList = () => {
               <td>{userData.bank_account_no}</td>
               <td>{userData.salary}</td>
               <td>
-                <button disabled={!userData.isVerified} onClick={() => setIsOpen(true)} className={`${userData.isVerified ? 'cursor-pointer btn':'opacity-50 cursor-not-allowed'}`}>
+                <button
+                  disabled={!userData.isVerified}
+                  onClick={() => setIsOpen(true)}
+                  className={`${
+                    userData.isVerified
+                      ? "cursor-pointer btn"
+                      : "opacity-50 cursor-not-allowed"
+                  }`}
+                >
                   Pay
                 </button>
-                <PayModal isOpen={isOpen} setIsOpen={setIsOpen} userData={userData}/>
-                </td>
-              <th><Link to={`/dashboard/employeeDetails/${userData.email}`}>
-  <button className="btn btn-info">Details</button>
-</Link></th>
+                <PayModal
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  userData={userData}
+                />
+              </td>
+              <th>
+                <Link to={`/dashboard/employeeDetails/${userData.email}`}>
+                  <button className="btn btn-info">Details</button>
+                </Link>
+              </th>
             </tr>
           ))}
           <tr></tr>

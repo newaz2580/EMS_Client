@@ -63,8 +63,6 @@ const CheckoutForm = ({ pay, setIsOpen, onSuccess }) => {
   setIsOpen(false);
   onSuccess();
 }
-
-
     setProcessing(false);
   };
 

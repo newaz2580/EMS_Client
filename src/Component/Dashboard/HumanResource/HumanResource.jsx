@@ -7,11 +7,6 @@ const HumanResource = () => {
   return (
     <div>
       <MenuItem icon={FaUsers} label="Employee List" address="employeeList" />
-      <MenuItem
-        icon={FaUserTie}
-        label="Employee Details"
-        address="employeeDetails"
-      />
       <MenuItem icon={FaChartLine} label="Progress" address="progress" />
     </div>
   );

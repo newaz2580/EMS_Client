@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router'; // ✅ fixed here
+import { Link } from 'react-router'; 
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
 
@@ -41,7 +41,7 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/login">
-                <button className="ml-3 text-amber-50">Login</button>
+                <button className="ml-3 text-amber-50 btn btn-primary">Login</button>
               </Link>
             </>
           )}
@@ -102,12 +102,14 @@ const Navbar = () => {
             </li>
             
             <li>
-              <Link
+              {
+                user && <Link
                 to="/dashboard"
                 className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500"
               >
                 Dashboard
               </Link>
+              }
             </li>
             <li>
               <Link

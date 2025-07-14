@@ -14,6 +14,9 @@ import AllEmployeeList from "../Component/Dashboard/Admin/AllEmployeeList";
 import Payroll from "../Component/Dashboard/Admin/Payroll";
 import ContactUS from "../pages/Contact/ContactUS";
 import UserFeedBack from "../Component/Dashboard/Admin/UserFeedBack";
+import PrivateRoutes from "../pages/Routes/PrivateRoutes";
+import HrRoutes from "../pages/Routes/HrRoutes";
+import AdminRoutes from "../pages/Routes/AdminRoutes";
 
 export const router=createBrowserRouter([
     {
@@ -45,35 +48,47 @@ export const router=createBrowserRouter([
       children:[
          {
             path:'workSheet',
-            element:<WorkSheet/>
+            element:<PrivateRoutes><WorkSheet/></PrivateRoutes>
          },
          {
             path:'paymentHistory',
-            element:<PaymentHistory/>,
+            element:<PrivateRoutes><PaymentHistory/></PrivateRoutes>,
          },
          {
             path:'employeeList',
-            element:<EmployeeList/>
+            element:<PrivateRoutes>
+               <HrRoutes><EmployeeList/></HrRoutes>
+            </PrivateRoutes>
          },
          {
             path:'employeeDetails/:email',
-            element:<EmployeeDetails/>
+            element:<PrivateRoutes>
+               <HrRoutes><EmployeeDetails/></HrRoutes>
+               </PrivateRoutes>
          },
          {
             path:'progress',
-            element:<Progress/>
+            element:<PrivateRoutes>
+              <HrRoutes> <Progress/></HrRoutes>
+               </PrivateRoutes>
          },
          {
             path:'allEmployeeList',
-            element:<AllEmployeeList/>
+            element:<PrivateRoutes>
+            <AdminRoutes><AllEmployeeList/></AdminRoutes>
+            </PrivateRoutes>
          },
          {
             path:'payroll',
-            element:<Payroll/>
+            element:<PrivateRoutes>
+               <AdminRoutes><Payroll/></AdminRoutes>
+               </PrivateRoutes>
          },
          {
             path:'feedback',
-            element:<UserFeedBack/>
+            element:<PrivateRoutes>
+            <AdminRoutes><UserFeedBack/></AdminRoutes>
+            </PrivateRoutes>
          }
       ]
     }

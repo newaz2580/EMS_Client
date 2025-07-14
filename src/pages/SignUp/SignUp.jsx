@@ -29,7 +29,7 @@ const Signup = () => {
       toast.success("Sign up successful!");
       await updateUserProfile(name, imageURL);
       navigate('/')
-      // Save to DB
+    
       const userData = {
         name,
         designation,
@@ -37,12 +37,13 @@ const Signup = () => {
         bank_account_no,
         salary,
         imageURL,
-        role: userRole, // 'employee' or 'hr'
+        role: userRole,
       };
       await saveUserInfo(userData);
-      navigate("/dashboard"); // optional redirect
+      navigate("/"); 
     } catch (error) {
-      // console.error(error);
+     
+      toast.error(error)
       toast.error("Signup failed. Try again.");
     }finally{
       setLoading(false)
@@ -172,8 +173,8 @@ const Signup = () => {
                     <option value="" disabled>
                       -- Select Role --
                     </option>
-                    <option value="employee">Employee</option>
-                    <option value="hr">HR</option>
+                    <option value="Employee">Employee</option>
+                    <option value="HR">HR</option>
                   </select>
                 </div>
               </div>

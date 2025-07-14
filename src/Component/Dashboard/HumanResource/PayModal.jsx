@@ -90,8 +90,8 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
             </div>
 
             <div className="flex gap-4 justify-between">
-              <button onClick={() => setIsOpen(false)}>Cancel</button>
-              <button type="submit">Pay</button>
+              <button className="btn" onClick={() => setIsOpen(false)}>Cancel</button>
+              <button type="submit" className="btn btn-primary">Pay</button>
             </div>
           </form>
         </DialogPanel>

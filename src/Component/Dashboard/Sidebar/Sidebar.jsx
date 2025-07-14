@@ -2,7 +2,6 @@
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { AiOutlineBars } from "react-icons/ai";
-import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import { Link, NavLink } from "react-router";
 import Employee from "../Employee/Employee";
@@ -14,8 +13,8 @@ import useUserRole  from "../../hooks/userRole";
 const Sidebar = () => {
   const { userLogout } = useAuth();
   const [isActive, setActive] = useState(true);
-  const [role]=useUserRole ()
-  console.log(role)
+  const [role,isLoading]=useUserRole ()
+  console.log(role,isLoading)
 //   console.log(role,isLoading)
 
   // Sidebar Responsive Handler
@@ -30,8 +29,9 @@ const Sidebar = () => {
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
-              <img src='https://i.ibb.co/Lh0mPbxs/logo-2.jpg' alt="logo" width="100" height="100" />
+              <img src='https://i.ibb.co/Lh0mPbxs/logo-2.jpg' alt="logo" width="80" height="80" className="rounded-full" />
             </Link>
+            
           </div>
         </div>
 
@@ -51,7 +51,7 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
+            <div className="w-full hidden md:flex px-4 py-2 shadow-sm rounded-lg justify-center items-center  mx-auto">
               <Link to="/">
                 <img
                   // className='hidden md:block'
@@ -59,20 +59,22 @@ const Sidebar = () => {
                   alt="logo"
                   width="100"
                   height="100"
+                  className="rounded-full"
                 />
               </Link>
+              <h2 className="font-bold text-xl">Employee Management</h2>
             </div>
           </div>
 
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav className="text-black">
-             <Employee/>
+             {/* <Employee/>
              <HumanResource/>
-             <Admin/>
-              {/* {role==='Employee' && <Employee/>}
+             <Admin/> */}
+              {role==='Employee' && <Employee/>}
               {role ==='HR' && <HumanResource/>}
-              {role ==='admin' && <Admin/>} */}
+              {role ==='admin' && <Admin/>}
            
 
              

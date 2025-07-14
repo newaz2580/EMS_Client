@@ -2,8 +2,10 @@ import React from "react";
 import useAuth from "../../Component/hooks/useAuth";
 import { toast } from "react-toastify";
 import { saveUserInfo } from "../../Api/Utils";
+import { useNavigate } from "react-router";
 
 const SignupWithGoogle = () => {
+  const navigate=useNavigate()
   const { userSignUpWithGoogle} = useAuth();
   const handleSignUpGoogle=()=>{
     userSignUpWithGoogle()
@@ -20,6 +22,7 @@ const SignupWithGoogle = () => {
         userData.status=false;
         userData.role="Employee"
         saveUserInfo(userData)
+        navigate('/')
     }).catch(error=>{
         console.log(error)
     })
