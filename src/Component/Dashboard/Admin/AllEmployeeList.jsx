@@ -1,75 +1,78 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AllEmployeeList = () => {
   const axiosSecure = useAxiosSecure();
-  const [viewMode, setViewMode] = useState('table');
+  const [viewMode, setViewMode] = useState("table");
 
   const { data: users = [], refetch } = useQuery({
-    queryKey: ['verified-users'],
+    queryKey: ["verified-users"],
     queryFn: async () => {
-      const res = await axiosSecure.get('/users/verified');
+      const res = await axiosSecure.get("/users/verified");
       return res.data;
     },
   });
 
   const handleMakeHR = async (id) => {
-    await axiosSecure.patch(`/users/${id}`, { role: 'hr' });
+    await axiosSecure.patch(`/users/${id}`, { role: "hr" });
     refetch();
   };
 
   const handleFire = async (id) => {
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'This user will be fired and unable to login!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "This user will be fired and unable to login!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, fire!',
+      confirmButtonText: "Yes, fire!",
     });
 
     if (result.isConfirmed) {
-      await axiosSecure.patch(`/users/${id}`, { status: 'fired' });
-      Swal.fire('Fired!', 'User has been fired.', 'success');
+      await axiosSecure.patch(`/users/${id}`, { status: "fired" });
+      Swal.fire("Fired!", "User has been fired.", "success");
       refetch();
     }
   };
 
-  const handleSalaryUpdate = async (id, currentSalary) => {
-    const { value: newSalary } = await Swal.fire({
-      title: 'Increase Salary',
-      input: 'number',
-      inputLabel: `Current: ৳${currentSalary}`,
-      inputPlaceholder: 'Enter new salary',
-      inputAttributes: {
-        min: currentSalary + 1,
-      },
-      showCancelButton: true,
-    });
+ const handleSalaryUpdate = async (id, currentSalary) => {
+  const { value: increaseAmount } = await Swal.fire({
+    title: "Increase Salary",
+    input: "number",
+    inputLabel: `Current Salary: ৳${currentSalary}`,
+    inputPlaceholder: "Enter increase amount (e.g. 1000)",
+    inputAttributes: {
+      min: 1,
+    },
+    showCancelButton: true,
+  });
 
-    if (newSalary && parseInt(newSalary) > currentSalary) {
-      await axiosSecure.patch(`/users/${id}`, { salary: parseInt(newSalary) });
-      Swal.fire('Updated!', 'Salary has been increased.', 'success');
-      refetch();
-    } else if (newSalary) {
-      Swal.fire('Error', 'Salary must be increased!', 'error');
-    }
-  };
+  const increase = parseInt(increaseAmount);
+  if (increase && increase > 0) {
+    const updatedSalary = currentSalary + increase;
+    await axiosSecure.patch(`/users/${id}`, { salary: updatedSalary });
+    Swal.fire("Updated!", `Salary increased to ৳${updatedSalary}`, "success");
+    refetch();
+  } else if (increaseAmount) {
+    Swal.fire("Error", "Enter a positive number greater than 0", "error");
+  }
+};
+
 
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">All Verified Employees</h2>
         <button
-          onClick={() => setViewMode(viewMode === 'table' ? 'card' : 'table')}
+          onClick={() => setViewMode(viewMode === "table" ? "card" : "table")}
           className="btn btn-sm btn-primary"
         >
-          Toggle to {viewMode === 'table' ? 'Card View' : 'Table View'}
+          Toggle to {viewMode === "table" ? "Card View" : "Table View"}
         </button>
       </div>
 
-      {viewMode === 'table' ? (
+      {viewMode === "table" ? (
         <div className="overflow-x-auto">
           <table className="table table-zebra w-full">
             <thead>
@@ -90,7 +93,7 @@ const AllEmployeeList = () => {
                   <td>৳{user.salary}</td>
                   <td>{user.role}</td>
                   <td>
-                    {user.role !== 'hr' ? (
+                    {user.role !== "hr" ? (
                       <button
                         className="btn btn-xs btn-info"
                         onClick={() => handleMakeHR(user._id)}
@@ -102,7 +105,7 @@ const AllEmployeeList = () => {
                     )}
                   </td>
                   <td>
-                    {user.status === 'fired' ? (
+                    {user.status === "fired" ? (
                       <span className="text-red-500 font-semibold">Fired</span>
                     ) : (
                       <button
@@ -131,7 +134,7 @@ const AllEmployeeList = () => {
                 <p>Salary: ৳{user.salary}</p>
                 <p>Role: {user.role}</p>
                 <div className="mt-2 flex gap-2">
-                  {user.role !== 'hr' && (
+                  {user.role !== "hr" && (
                     <button
                       className="btn btn-xs btn-info"
                       onClick={() => handleMakeHR(user._id)}
@@ -139,7 +142,7 @@ const AllEmployeeList = () => {
                       Make HR
                     </button>
                   )}
-                  {user.status === 'fired' ? (
+                  {user.status === "fired" ? (
                     <span className="text-red-500 font-bold">Fired</span>
                   ) : (
                     <button
@@ -152,7 +155,7 @@ const AllEmployeeList = () => {
                 </div>
                 <button
                   className="btn btn-xs btn-outline mt-2"
-                  onClick={() => handleSalaryUpdate(user._id, user.salary)}
+                  onClick={() => handleSalaryUpdate(user._id, parseInt(user.salary))}
                 >
                   Adjust Salary
                 </button>

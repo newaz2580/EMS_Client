@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router'; 
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
+import DarkModeToggler from '../Shared/DarkModeToggler';
 
 const Navbar = () => {
   const { userLogout, user } = useAuth();
@@ -19,14 +20,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 right-0 left-0 z-12 " >
+      <div className="max-w-11/12 mx-auto flex flex-wrap items-center justify-between p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://i.ibb.co/Lh0mPbxs/logo-2.jpg" className="h-8 rounded-full" alt="Flowbite Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">EMS</span>
         </Link>
-
+         
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <DarkModeToggler/>
+         
           {user ? (
             <>
               <button

@@ -10,11 +10,15 @@ import {
   updateProfile
 } from "firebase/auth";
 import { auth } from "../Component/firebase/firebase.config";
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
     const provider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading,setLoading]=useState(true)
+  const [darkMode,setDarkMode]=useState(
+    localStorage.getItem('theme')==="dark"
+  )
   const createUserSignupAccount = (email, password) => {
     setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password);
@@ -38,12 +42,38 @@ const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    if(darkMode){
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('theme','dark')
+    }
+    else{
+         document.documentElement.classList.remove('dark')
+         localStorage.setItem('theme','light')
+  
+    }
+  const unsubscribe = onAuthStateChanged(auth, async(currentUser) => {
     setUser(currentUser);
+      if (currentUser?.email) {
+        setUser(currentUser)
+
+        // Get JWT token
+        await axios.post(
+          `${import.meta.env.VITE_API_KEY}/jwt`,
+          {
+            email: currentUser?.email,
+          },
+          { withCredentials: true }
+        )
+      } else {
+        setUser(currentUser)
+        await axios.get(`${import.meta.env.VITE_API_KEY}/logout`, {
+          withCredentials: true,
+        })
+      }
     setLoading(false);
   });
   return () => unsubscribe();
-}, []);
+}, [darkMode]);
   const info = {
     createUserSignupAccount,
     signInUser,
@@ -51,7 +81,9 @@ const AuthProvider = ({ children }) => {
     loading,
     userLogout,
     userSignUpWithGoogle,
-    updateUserProfile
+    updateUserProfile,
+    darkMode,
+    setDarkMode
   };
   // console.log(user);
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;

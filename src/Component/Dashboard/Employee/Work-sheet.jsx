@@ -166,9 +166,9 @@ const WorkSheet = () => {
         <tbody>
           {workList.length === 0 ? (
             <>
-              <div>
+             
                 <p className="text-center w-full">No Tasks Added Yet</p>
-              </div>{" "}
+             
             </>
           ) : (
             <>

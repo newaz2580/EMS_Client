@@ -49,7 +49,7 @@ const Login = () => {
               <form onSubmit={handleLogin} className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Your email
@@ -65,7 +65,7 @@ const Login = () => {
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Password
@@ -90,19 +90,22 @@ const Login = () => {
                 >
                   {loading ? <span className='loading loading-spinner loading-sm'></span>:'Login'}
                 </button>
-                <div>
-                  <SignupWithGoogle/>
-                </div>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                
+               
+              </form>
+               <p className="text-sm mt-2 font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <Link
                    to='/signup'
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium  text-primary-600 hover:underline dark:text-primary-500"
                   >
                     SignUp
                   </Link>
                 </p>
-              </form>
+              <div>
+                  <SignupWithGoogle/>
+                  
+                </div>
             </div>
           </div>
         </div>

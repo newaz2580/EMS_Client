@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router"; // ✅ Corrected import
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../Component/hooks/useAuth";
 import { toast } from "react-toastify";
 import SignupWithGoogle from "../SignupWithGoogle/SignupWithGoogle";
@@ -182,10 +182,8 @@ const Signup = () => {
               <button disabled={loading} type="submit" className="btn btn-primary w-full">
                 {loading ? <span className="loading loading-spinner loading-sm text-white"></span>:'Create an account'}
               </button>
-
-              <SignupWithGoogle />
-
-              <p className="text-sm text-center text-gray-500 dark:text-gray-400">
+            </form>
+            <p className="text-sm text-center text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
                 <Link
                   to="/login"
@@ -194,7 +192,8 @@ const Signup = () => {
                   Login here
                 </Link>
               </p>
-            </form>
+              <SignupWithGoogle />
+
           </div>
         </div>
       </div>
