@@ -40,7 +40,7 @@ const EmployeeList = () => {
     <div>
       <table className="w-full border text-center">
         <thead>
-          <tr>
+          <tr className="text-black dark:text-white">
             <th>Name</th>
             <th>Email</th>
             <th>Verified</th>
@@ -52,7 +52,7 @@ const EmployeeList = () => {
         </thead>
         <tbody className="border ">
           {data?.map((userData) => (
-            <tr key={userData._id}>
+            <tr key={userData._id} className="text-black dark:text-white">
               <td>{userData.name}</td>
               <td>{userData.email}</td>
               <td>

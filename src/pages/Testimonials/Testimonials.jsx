@@ -78,19 +78,19 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto  my-10 bg-gray-100">
-      <h2 className="text-center text-3xl font-bold py-10">Testimonials</h2>
+    <div className="max-w-11/12 mx-auto  my-5 bg-gray-100 dark:bg-gray-900">
+      <h2 className="text-center text-3xl font-bold py-5">Testimonials</h2>
       <Slider {...settings}>
         {testimonials.map((item, index) => (
           <div key={index} className="px-2">
-            <div className="bg-white rounded-lg shadow p-4 h-64 my-5 text-center">
+            <div className="bg-white dark:bg-green-950 dark:text-white rounded-lg shadow p-4 h-64 my-5 text-center">
               <img
                 src={item.image}
                 alt={item.name}
                 className="mx-auto w-24 h-24 rounded-full object-cover mb-2"
               />
-              <h3 className="text-lg font-semibold text-black">{item.name}</h3>
-              <p className="text-black mt-2 text-sm">{item.text}</p>
+              <h3 className="text-lg font-semibold text-black dark:text-white">{item.name}</h3>
+              <p className="text-black mt-2 text-sm dark:text-white">{item.text}</p>
             </div>
           </div>
         ))}

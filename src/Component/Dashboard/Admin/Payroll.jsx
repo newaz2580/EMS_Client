@@ -17,10 +17,10 @@ const Payroll = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Payment Approvals</h2>
+      <h2 className="text-xl font-bold mb-4 ">Payment Approvals</h2>
       <table className="table w-full">
         <thead>
-          <tr>
+          <tr className="text-black dark:text-white">
             <th>Name</th>
             <th>Salary</th>
             <th>Month</th>
@@ -31,7 +31,7 @@ const Payroll = () => {
         </thead>
         <tbody>
           {data.map(pay => (
-            <tr key={pay._id}>
+            <tr key={pay._id} className="text-black dark:text-white">
               <td>{pay.EmployeeName}</td>
               <td>৳{pay.salary}</td>
               <td>{pay.month}</td>

@@ -27,10 +27,10 @@ const PaymentHistory = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">My Salary Payment History</h2>
+      <h2 className="text-xl font-bold mb-4 dark:text-white">My Salary Payment History</h2>
       <table className="table w-full border">
         <thead>
-          <tr>
+          <tr className="text-black dark:text-white">
             <th>Month</th>
             <th>Year</th>
             <th>Amount</th>
@@ -41,11 +41,11 @@ const PaymentHistory = () => {
         <tbody>
           {payments.length === 0 ? (
             <tr>
-              <td colSpan="5" className="text-center py-4">No payment history found.</td>
+              <td colSpan="5" className="text-center py-4 dark:text-white">No payment history found.</td>
             </tr>
           ) : (
             payments.map((item) => (
-              <tr key={item._id}>
+              <tr key={item._id} className="text-black dark:text-white">
                 <td>{item.month}</td>
                 <td>{item.year}</td>
                 <td>৳{item.salary}</td>

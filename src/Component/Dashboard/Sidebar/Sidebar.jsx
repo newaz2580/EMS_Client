@@ -8,6 +8,7 @@ import Employee from "../Employee/Employee";
 import HumanResource from "../HumanResource/HumanResource";
 import Admin from "../Admin/Admin";
 import useUserRole  from "../../hooks/userRole";
+import DarkModeToggler from "../../Shared/DarkModeToggler";
 
 
 const Sidebar = () => {
@@ -28,24 +29,30 @@ const Sidebar = () => {
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
-            <Link to="/">
+           <div className="flex justify-center items-center">
+             <Link to="/">
               <img src='https://i.ibb.co/Lh0mPbxs/logo-2.jpg' alt="logo" width="80" height="80" className="rounded-full" />
             </Link>
+            <DarkModeToggler/>
+           </div>
             
           </div>
-        </div>
+            
 
+        </div>
+         
         <button
           onClick={handleToggle}
           className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
         >
           <AiOutlineBars className="h-5 w-5" />
         </button>
+        
       </div>
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 text-black dark:bg-gray-900 dark:text-white w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -62,7 +69,9 @@ const Sidebar = () => {
                   className="rounded-full"
                 />
               </Link>
-              <h2 className="font-bold text-xl">Employee Management</h2>
+               
+              <h2 className="font-bold text-xl text-black dark:text-white">Employee Management</h2>
+              <DarkModeToggler></DarkModeToggler>
             </div>
           </div>
 
@@ -96,7 +105,7 @@ const Sidebar = () => {
           >
             <GrLogout className="w-5 h-5" />
 
-            <span className="mx-4 font-medium">Logout</span>
+            <span className="mx-4 font-medium text-black dark:text-white">Logout</span>
           </button>
         </div>
       </div>

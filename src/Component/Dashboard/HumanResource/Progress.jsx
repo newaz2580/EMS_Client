@@ -56,12 +56,12 @@ const Progress = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Employee Work Records</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-white">Employee Work Records</h2>
 
       {/* 🟩 Filters */}
       <div className="flex flex-wrap gap-4 mb-4">
         <select
-          className="select select-bordered"
+          className="select  text-white"
           value={selectedEmployee}
           onChange={(e) => setSelectedEmployee(e.target.value)}
         >
@@ -74,7 +74,7 @@ const Progress = () => {
         </select>
 
         <select
-          className="select select-bordered"
+          className="select select-bordered text-white"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
@@ -91,15 +91,15 @@ const Progress = () => {
       </div>
 
       {/* 🟩 Work Hours Summary */}
-      <div className="mb-4 text-lg font-medium">
-        Total Work Hours: <span className="text-blue-600">{totalHours}</span>
+      <div className="mb-4 text-lg font-medium dark:text-white">
+        Total Work Hours: <span className="text-green-600">{totalHours}</span>
       </div>
 
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr className="text-black dark:text-white">
               <th>Employee</th>
               <th>Task</th>
               <th>Hours</th>
@@ -108,7 +108,7 @@ const Progress = () => {
           </thead>
           <tbody>
             {filteredData.map((record) => (
-              <tr key={record._id}>
+              <tr key={record._id} className="text-black dark:text-white">
                 <td>{record.name}</td>
                 <td>{record.tasks}</td>
                 <td>{record.hours}</td>
@@ -119,7 +119,7 @@ const Progress = () => {
         </table>
 
         {filteredData.length === 0 && (
-          <p className="text-center text-gray-500 py-4">No records found</p>
+          <p className="text-center text-black dark:text-white py-4">No records found</p>
         )}
       </div>
     </div>

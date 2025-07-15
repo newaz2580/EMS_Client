@@ -63,7 +63,7 @@ const AllEmployeeList = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">All Verified Employees</h2>
+        <h2 className="text-2xl font-bold text-black dark:text-white">All Verified Employees</h2>
         <button
           onClick={() => setViewMode(viewMode === "table" ? "card" : "table")}
           className="btn btn-sm btn-primary"
@@ -74,9 +74,9 @@ const AllEmployeeList = () => {
 
       {viewMode === "table" ? (
         <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
+          <table className="table table-zebra w-full ">
             <thead>
-              <tr>
+              <tr className="text-black dark:text-white">
                 <th>Name</th>
                 <th>Designation</th>
                 <th>Salary</th>
@@ -87,7 +87,7 @@ const AllEmployeeList = () => {
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr key={user._id}>
+                <tr key={user._id} className="text-black dark:text-white">
                   <td>{user.name}</td>
                   <td>{user.designation}</td>
                   <td>৳{user.salary}</td>

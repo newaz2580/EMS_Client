@@ -21,7 +21,7 @@ const UserFeedBack = () => {
     if(isError) return <p>{isError.message}</p>
     return (
         <div>
-            <h1>UserFeedback</h1>
+            <h1 className="text-black dark:text-white text-3xl" >UserFeedback</h1>
             <div>
                 {
                 message?.map(mess=><Message key={mess._id} message={mess}></Message>)

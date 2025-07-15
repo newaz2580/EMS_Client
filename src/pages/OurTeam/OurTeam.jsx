@@ -54,11 +54,11 @@ const teamMembers = [
 
 const OurTeam = () => {
   return (
-    <section className="py-20 bg-gray-100">
+    <section className="py-5 bg-gray-100 dark:bg-gray-900">
       <div className="max-w-11/12 mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">Meet Our Professionals</h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        <div className="text-center mb-5">
+          <h2 className="text-4xl font-extrabold text-black dark:text-white mb-4">Meet Our Professionals</h2>
+          <p className="text-black dark:text-white text-lg max-w-2xl mx-auto">
             Our dedicated team members work day and night to ensure the best employee experience.
           </p>
         </div>
@@ -66,16 +66,16 @@ const OurTeam = () => {
           {teamMembers.map((member, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300"
+              className="bg-white dark:bg-green-950 rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300"
             >
               <img
                 src={member.image}
                 alt={member.name}
                 className="w-28 h-28 object-cover rounded-full mx-auto mb-4 border-4 border-indigo-200"
               />
-              <h3 className="text-xl font-bold text-gray-800 text-center">{member.name}</h3>
-              <p className="text-indigo-600 text-center font-medium">{member.title}</p>
-              <p className="text-gray-600 text-sm mt-2 text-center">{member.bio}</p>
+              <h3 className="text-xl font-bold text-black dark:text-white text-center">{member.name}</h3>
+              <p className="text-green-500 text-center font-medium">{member.title}</p>
+              <p className="text-black dark:text-white text-sm mt-2 text-center">{member.bio}</p>
             </div>
           ))}
         </div>

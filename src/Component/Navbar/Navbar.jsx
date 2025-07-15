@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 right-0 left-0 z-12 " >
+    <nav className="bg-white text-black dark:text-white  border-gray-200 dark:bg-gray-900 sticky top-0 right-0 left-0 z-12 " >
       <div className="max-w-11/12 mx-auto flex flex-wrap items-center justify-between p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://i.ibb.co/Lh0mPbxs/logo-2.jpg" className="h-8 rounded-full" alt="Flowbite Logo" />

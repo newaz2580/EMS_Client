@@ -19,7 +19,7 @@ const DashboardLayout = () => {
     if (role === 'admin') return <Navigate to="/dashboard/allEmployeeList" replace />;
   }
     return (
-        <div className='relative min-h-screen md:flex bg-white'>
+        <div className='relative min-h-screen md:flex bg-white dark:bg-gray-800 dark:text-white'>
       {/* Left Side: Sidebar Component */}
       <Sidebar />
       

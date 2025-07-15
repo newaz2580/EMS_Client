@@ -110,7 +110,7 @@ const WorkSheet = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">📝 Work Sheet</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-white">📝 Work Sheet</h2>
 
       <form
         onSubmit={handleSubmit}
@@ -119,10 +119,10 @@ const WorkSheet = () => {
         <select
           value={tasks}
           onChange={(e) => setTasks(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded dark:bg-gray-800 dark:text-white"
           required
         >
-          <option value="">Select Task</option>
+          <option value="" className="">Select Task</option>
           <option value="Sales">Sales</option>
           <option value="Support">Support</option>
           <option value="Content">Content</option>
@@ -134,14 +134,14 @@ const WorkSheet = () => {
           placeholder="Hours"
           value={hours}
           onChange={(e) => setHours(e.target.value)}
-          className="border p-2 rounded w-32"
+          className="border p-2 rounded w-32 dark:text-white"
           required
         />
 
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          className="border p-2 rounded"
+          className="border p-2 rounded dark:text-white"
           dateFormat="yyyy-MM-dd"
         />
 
@@ -156,7 +156,7 @@ const WorkSheet = () => {
 
       <table className="w-full border text-left">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="text-black dark:text-white">
             <th className="p-2">Task</th>
             <th className="p-2">Hours</th>
             <th className="p-2">Date</th>
@@ -167,7 +167,7 @@ const WorkSheet = () => {
           {workList.length === 0 ? (
             <>
              
-                <p className="text-center w-full">No Tasks Added Yet</p>
+                <p className="text-center w-full dark:text-white">No Tasks Added Yet</p>
              
             </>
           ) : (
