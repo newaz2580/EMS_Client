@@ -3,27 +3,26 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import PayModal from "./PayModal";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 
 const EmployeeList = () => {
-  const { email } = useParams();
-  console.log(email);
   const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
-  const { data, refetch } = useQuery({
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure("/users");
-
       return res.data;
     },
   });
-  console.log(data);
 
+  // Toggle verified status
   const handleVerified = async (id, isVerified) => {
     try {
       const { data } = await axiosSecure.patch(`/users/${id}`, {
-        isVerified: !isVerified, 
+        isVerified: !isVerified,
       });
 
       if (data.modifiedCount > 0) {
@@ -36,65 +35,126 @@ const EmployeeList = () => {
     }
   };
 
+  // Handle payment modal open
+  const handlePayment = (user) => {
+    setSelectedUser(user);
+    setIsOpen(true);
+  };
+
+  // Increase salary by 5% (example) and update backend
+  const handleIncreaseSalary = async (user) => {
+    try {
+      const newSalary = Math.round(user.salary * 1.05);
+      const { data } = await axiosSecure.patch(`/users/${user._id}`, {
+        salary: newSalary,
+      });
+
+      if (data.modifiedCount > 0) {
+        toast.success(`Salary increased to ৳${newSalary}`);
+        refetch();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to increase salary");
+    }
+  };
+
   return (
-    <div>
-      <table className="w-full border text-center">
-        <thead>
-          <tr className="text-black dark:text-white">
-            <th>Name</th>
-            <th>Email</th>
-            <th>Verified</th>
-            <th>Bank Account</th>
-            <th>Salary</th>
-            <th>Pay</th>
-            <th>Details</th>
+    <div className="overflow-x-auto rounded-lg shadow-md mt-5 bg-white dark:bg-gray-900 p-6 max-w-7xl mx-auto">
+      <h2 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+        Employee List
+      </h2>
+
+      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <thead className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+          <tr>
+            <th className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Name</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Email</th>
+            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Verified</th>
+            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Bank Account</th>
+            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Salary</th>
+            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Increase Salary</th>
+            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Pay</th>
+            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Details</th>
           </tr>
         </thead>
-        <tbody className="border ">
-          {data?.map((userData) => (
-            <tr key={userData._id} className="text-black dark:text-white">
-              <td>{userData.name}</td>
-              <td>{userData.email}</td>
-              <td>
-                <button
-                  onClick={() =>
-                    handleVerified(userData._id, userData.isVerified)
-                  }
-                >
-                  {userData.isVerified ? "✅" : "❌"}
-                </button>
+
+        <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 text-gray-800 dark:text-gray-100">
+          {users.length === 0 ? (
+            <tr>
+              <td colSpan="8" className="text-center py-6 text-gray-500 dark:text-gray-400">
+                No employees found.
               </td>
-              <td>{userData.bank_account_no}</td>
-              <td>{userData.salary}</td>
-              <td>
-                <button
-                  disabled={!userData.isVerified}
-                  onClick={() => setIsOpen(true)}
-                  className={`${
-                    userData.isVerified
-                      ? "cursor-pointer btn"
-                      : "opacity-50 cursor-not-allowed"
-                  }`}
-                >
-                  Pay
-                </button>
-                <PayModal
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                  userData={userData}
-                />
-              </td>
-              <th>
-                <Link to={`/dashboard/employeeDetails/${userData.email}`}>
-                  <button className="btn btn-info">Details</button>
-                </Link>
-              </th>
             </tr>
-          ))}
-          <tr></tr>
+          ) : (
+            users.map((user) => (
+              <tr key={user._id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
+                <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
+                <td className="px-6 py-4 text-center">
+                  <button
+                    onClick={() => handleVerified(user._id, user.isVerified)}
+                    className="text-2xl"
+                    title="Toggle Verification"
+                    aria-label={user.isVerified ? "Verified" : "Not verified"}
+                  >
+                    {user.isVerified ? "✅" : "❌"}
+                  </button>
+                </td>
+                <td className="px-6 py-4 text-center">{user.bank_account_no || "N/A"}</td>
+                <td className="px-6 py-4 text-center font-semibold">৳ {user.salary}</td>
+
+                <td className="px-6 py-4 text-center">
+                  <button
+                    onClick={() => handleIncreaseSalary(user)}
+                    disabled={!user.isVerified}
+                    className={`px-3 py-1 rounded-md text-white font-medium transition-colors duration-200 ${
+                      user.isVerified
+                        ? "bg-yellow-500 hover:bg-yellow-600"
+                        : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                    title="Increase Salary by 5%"
+                  >
+                    +
+                  </button>
+                </td>
+
+                <td className="px-6 py-4 text-center">
+                  <button
+                    disabled={!user.isVerified}
+                    onClick={() => handlePayment(user)}
+                    className={`px-4 py-1 rounded-md text-white font-medium transition-colors duration-200 ${
+                      user.isVerified
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                    title={user.isVerified ? "Make Payment" : "User not verified"}
+                  >
+                    Pay
+                  </button>
+                </td>
+
+                <td className="px-6 py-4 text-center">
+                  <Link to={`/dashboard/employeeDetails/${user.email}`}>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-md transition-colors duration-200">
+                      Details
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
-      <table></table>
+
+      {selectedUser && (
+        <PayModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          userData={selectedUser}
+          refetch={refetch}
+        />
+      )}
     </div>
   );
 };

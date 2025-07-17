@@ -45,8 +45,8 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
       className="relative z-50"
     >
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-        <DialogPanel className="max-w-lg space-y-4 border bg-gray-200 p-12 dark:bg-gray-950">
-          <DialogTitle className="font-bold text-black dark:text-white">Request for payment</DialogTitle>
+        <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+          <DialogTitle className="font-bold">Deactivate account</DialogTitle>
 
           <form
             onSubmit={handlePayment}
@@ -54,43 +54,43 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
           >
             <div className="mb-1 flex flex-col gap-6">
               <div className="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-black dark:text-white">
+                <label class="block mb-2 text-sm text-slate-600">
                   Your Salary
                 </label>
                 <input
                   type="text"
                   defaultValue={salary}
                   name="salary"
-                  className="w-full bg-transparent placeholder:text-black dark:text-white text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Your salary"
                   readOnly
                 />
               </div>
               <div className="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-black dark:text-white">
+                <label class="block mb-2 text-sm text-slate-600">
                   Payment Month
                 </label>
                 <input
                   type="text"
                   name="month"
-                  className="w-full bg-transparent placeholder:text-black dark:text-white text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Your payment Month"
                 />
               </div>
               <div className="w-full max-w-sm min-w-[200px]">
-                <label class="block mb-2 text-sm text-black dark:text-white">
+                <label class="block mb-2 text-sm text-slate-600">
                   Payment Year
                 </label>
                 <input
                   type="text"
                   name="year"
-                  class="w-full bg-transparent placeholder:text-black dark:text-white text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Payment Year"
                 />
               </div>
             </div>
 
-            <div className="flex gap-4 justify-between mt-5">
+            <div className="flex gap-4 justify-between">
               <button className="btn" onClick={() => setIsOpen(false)}>Cancel</button>
               <button type="submit" className="btn btn-primary">Pay</button>
             </div>

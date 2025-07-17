@@ -17,13 +17,13 @@ const WorkSheet = () => {
   const [tasks, setTasks] = useState("");
   const [hours, setHours] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  // const [workList, setWorkList] = useState([]);
   const [editing, setEditing] = useState(null);
 
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
     const newWork = {
+      name: user.displayName,
       email: user?.email,
       tasks,
       hours: Number(hours),
@@ -31,12 +31,14 @@ const WorkSheet = () => {
     };
     try {
       const res = await axiosSecure.post("/workSheet", newWork);
-      console.log(res.data);
-      toast.success("Data added Successfully");
+      toast.success("✅ Task added successfully!");
       refetch();
+      setTasks("");
+      setHours("");
       setLoading(false);
     } catch (error) {
       console.log(error);
+      toast.error("❌ Failed to add task");
       setLoading(false);
     }
   };
@@ -53,33 +55,24 @@ const WorkSheet = () => {
       return res.data;
     },
   });
-  // console.log(workList)
+
   const handleDelete = async (id) => {
-    try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-      if (result.isConfirmed) {
-        const data = await axiosSecure.delete(`/workSheet/${id}`);
-        if (data.data.deletedCount) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your Tasks has been deleted.",
-            icon: "success",
-          });
-          refetch();
-        }
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+    });
+    if (confirm.isConfirmed) {
+      const data = await axiosSecure.delete(`/workSheet/${id}`);
+      if (data.data.deletedCount) {
+        Swal.fire("Deleted!", "Your task has been deleted.", "success");
+        refetch();
       }
-    } catch (error) {
-      console.log(error);
     }
   };
+
   const handleUpdate = async () => {
     if (!editing) return;
 
@@ -93,38 +86,38 @@ const WorkSheet = () => {
       });
 
       if (res.data.modifiedCount > 0) {
-        toast.success("✅ Task updated successfully!");
+        toast.success("✅ Task updated!");
         setEditing(null);
         refetch();
       } else {
         toast.warning("⚠️ No changes detected.");
       }
     } catch (error) {
-      console.error("Update error:", error);
-      toast.error("❌ Failed to update task.");
+      toast.error("❌ Update failed.");
     }
   };
 
-  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
-  if (isError) return <p>Error: {isError.message}</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <p className="text-red-500 dark:text-red-400">Error loading data</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4 dark:text-white">📝 Work Sheet</h2>
+    <div className="p-6 max-w-5xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-md">
+      <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+        📝 Work Sheet
+      </h2>
 
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-wrap items-center gap-4 mb-6"
+        className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 items-center"
       >
         <select
           value={tasks}
           onChange={(e) => setTasks(e.target.value)}
-          className="border p-2 rounded dark:bg-gray-800 dark:text-white"
+          className="select select-bordered w-full dark:bg-gray-800 dark:text-white"
           required
         >
-          <option value="" className="">
-            Select Task
-          </option>
+          <option value="">Select Task</option>
           <option value="Sales">Sales</option>
           <option value="Support">Support</option>
           <option value="Content">Content</option>
@@ -136,70 +129,75 @@ const WorkSheet = () => {
           placeholder="Hours"
           value={hours}
           onChange={(e) => setHours(e.target.value)}
-          className="border p-2 rounded w-32 dark:text-white"
+          className="input input-bordered w-full dark:bg-gray-800 dark:text-white"
           required
         />
 
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          className="border p-2 rounded dark:text-white"
+          className="input input-bordered w-full dark:bg-gray-800 dark:text-white"
           dateFormat="yyyy-MM-dd"
         />
 
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="btn bg-blue-600 hover:bg-blue-700 text-white"
         >
-          {loading ? "Adding..." : "Add"}
+          {loading ? "Adding..." : "Add Task"}
         </button>
       </form>
 
-      <table className="w-full border text-left">
-        <thead>
-          <tr className="text-black dark:text-white">
-            <th className="p-2">Task</th>
-            <th className="p-2">Hours</th>
-            <th className="p-2">Date</th>
-            <th className="p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {workList.length === 0 ? (
+      {/* Table */}
+      <div className="overflow-x-auto rounded-lg shadow">
+        <table className="table w-full bg-white dark:bg-gray-800 dark:text-white rounded-lg">
+          <thead className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white">
             <tr>
-              <td colSpan="100%" className="text-center py-4 dark:text-white">
-                No Tasks Added Yet
-              </td>
+              <th>Task</th>
+              <th>Hours</th>
+              <th>Date</th>
+              <th>Actions</th>
             </tr>
-          ) : (
-            <>
-              {workList?.map((item) => (
-                <tr key={item._id} className="border-t dark:text-white">
-                  <td className="p-2">{item.tasks}</td>
-                  <td className="p-2">{item.hours}</td>
-                  <td className="p-2">{item.date}</td>
-                  <td className="p-2">
+          </thead>
+          <tbody className="text-gray-700 dark:text-gray-300">
+            {workList.length === 0 ? (
+              <tr>
+                <td colSpan="4" className="text-center py-6 dark:text-gray-400">
+                  No tasks added yet.
+                </td>
+              </tr>
+            ) : (
+              workList.map((item) => (
+                <tr
+                  key={item._id}
+                  className="text-black dark:text-white"
+                >
+                  <td>{item.tasks}</td>
+                  <td>{item.hours}</td>
+                  <td>{item.date}</td>
+                  <td>
                     <button
                       onClick={() => setEditing(item)}
-                      className="text-blue-600 mr-3 cursor-pointer"
+                      className="text-blue-600 dark:text-blue-400 hover:underline mr-4"
                     >
-                      🖊
+                      🖊 Edit
                     </button>
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="text-red-600 cursor-pointer"
+                      className="text-red-600 dark:text-red-400 hover:underline"
                     >
-                      ❌
+                      ❌ Delete
                     </button>
                   </td>
                 </tr>
-              ))}
-            </>
-          )}
-        </tbody>
-      </table>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
+      {/* Modal */}
       <WorkSheetModal
         editing={editing}
         setEditing={setEditing}

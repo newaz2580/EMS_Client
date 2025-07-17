@@ -78,11 +78,11 @@ const EmployeeDetails = () => {
 
   if (!employee)
     return (
-      <p className="text-center py-10 text-red-500">Employee not found!</p>
+      <p className="text-center py-10 text-red-500 dark:text-white">Employee not found!</p>
     );
 
-  const textColor = isDark ? '#f9fafb' : '#1f2937'; // white-ish or dark gray
-  const gridColor = isDark ? '#374151' : '#ccc'; // dark gray grid or light gray
+  const textColor = isDark ? '#f9fafb' : '#1f2937'; 
+  const gridColor = isDark ? '#374151' : '#ccc'; 
 
   return (
     <div className="p-6">

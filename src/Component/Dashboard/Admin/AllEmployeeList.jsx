@@ -36,32 +36,29 @@ const AllEmployeeList = () => {
     }
   };
 
- const handleSalaryUpdate = async (id, currentSalary) => {
-  const { value: increaseAmount } = await Swal.fire({
-    title: "Increase Salary",
-    input: "number",
-    inputLabel: `Current Salary: ৳${currentSalary}`,
-    inputPlaceholder: "Enter increase amount (e.g. 1000)",
-    inputAttributes: {
-      min: 1,
-    },
-    showCancelButton: true,
-  });
+  const handleSalaryUpdate = async (id, currentSalary) => {
+    const { value: increaseAmount } = await Swal.fire({
+      title: "Increase Salary",
+      input: "number",
+      inputLabel: `Current Salary: ৳${currentSalary}`,
+      inputPlaceholder: "Enter increase amount (e.g. 1000)",
+      inputAttributes: { min: 1 },
+      showCancelButton: true,
+    });
 
-  const increase = parseInt(increaseAmount);
-  if (increase && increase > 0) {
-    const updatedSalary = currentSalary + increase;
-    await axiosSecure.patch(`/users/${id}`, { salary: updatedSalary });
-    Swal.fire("Updated!", `Salary increased to ৳${updatedSalary}`, "success");
-    refetch();
-  } else if (increaseAmount) {
-    Swal.fire("Error", "Enter a positive number greater than 0", "error");
-  }
-};
-
+    const increase = parseInt(increaseAmount);
+    if (increase && increase > 0) {
+      const updatedSalary = currentSalary + increase;
+      await axiosSecure.patch(`/users/${id}`, { salary: updatedSalary });
+      Swal.fire("Updated!", `Salary increased to ৳${updatedSalary}`, "success");
+      refetch();
+    } else if (increaseAmount) {
+      Swal.fire("Error", "Enter a positive number greater than 0", "error");
+    }
+  };
 
   return (
-    <div className="p-4">
+    <div className="p-4  ">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-black dark:text-white">All Verified Employees</h2>
         <button
@@ -74,7 +71,7 @@ const AllEmployeeList = () => {
 
       {viewMode === "table" ? (
         <div className="overflow-x-auto">
-          <table className="table table-zebra w-full ">
+          <table className="table table-zebra w-full">
             <thead>
               <tr className="text-black dark:text-white">
                 <th>Name</th>
@@ -126,15 +123,15 @@ const AllEmployeeList = () => {
           {users.map((user) => (
             <div
               key={user._id}
-              className="card bg-base-100 shadow-xl border border-gray-200"
+              className="card bg-gray-200 dark:bg-base-100 shadow-xl border border-base-300 text-black dark:text-white"
             >
               <div className="card-body">
-                <h2 className="card-title text-black dark:text-white">{user.name}</h2>
-                <p className="text-black dark:text-white">Designation: {user.designation}</p>
-                <p className="text-black dark:text-white">Salary: ৳{user.salary}</p>
-                <p className="text-black dark:text-white">Role: {user.role}</p>
-                <div className="mt-2 flex gap-2 ">
-                  {user.role !== "HR" && (
+                <h2 className="card-title">{user.name}</h2>
+                <p>Designation: {user.designation}</p>
+                <p>Salary: ৳{user.salary}</p>
+                <p>Role: {user.role}</p>
+                <div className="mt-2 flex gap-2">
+                  {user.role !== "hr" && (
                     <button
                       className="btn btn-xs btn-info"
                       onClick={() => handleMakeHR(user._id)}
@@ -154,10 +151,12 @@ const AllEmployeeList = () => {
                   )}
                 </div>
                 <button
-                  className="btn btn-xs btn-outline mt-2 text-black dark:text-white"
-                  onClick={() => handleSalaryUpdate(user._id, parseInt(user.salary))}
+                  className="btn btn-xs btn-outline mt-2"
+                  onClick={() =>
+                    handleSalaryUpdate(user._id, parseInt(user.salary))
+                  }
                 >
-                  Adjust Salary
+                  Increase Salary
                 </button>
               </div>
             </div>

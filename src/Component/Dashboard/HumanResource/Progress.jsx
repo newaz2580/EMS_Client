@@ -65,8 +65,9 @@ const Progress = () => {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-4 mb-6 justify-center">
+        {/* Employee Filter */}
         <select
-          className="select select-bordered w-60 dark:bg-gray-700 dark:text-white"
+          className="select select-bordered w-60 bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600"
           value={selectedEmployee}
           onChange={(e) => setSelectedEmployee(e.target.value)}
         >
@@ -78,8 +79,9 @@ const Progress = () => {
           ))}
         </select>
 
+        {/* Month Filter */}
         <select
-          className="select select-bordered w-48 dark:bg-gray-700 dark:text-white"
+          className="select select-bordered w-48 bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
@@ -106,8 +108,13 @@ const Progress = () => {
       </div>
 
       {/* Total Work Hours */}
-      <div className="mb-6 text-center text-xl font-semibold text-gray-800 dark:text-green-400">
-        Total Work Hours: <span>{totalHours.toFixed(2)}</span> hours
+      <div className="mb-6 text-center">
+        <span className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+          Total Work Hours:
+        </span>{" "}
+        <span className="text-green-600 dark:text-green-400 font-bold">
+          {totalHours.toFixed(2)} hours
+        </span>
       </div>
 
       {/* Work Records Table */}
@@ -128,9 +135,9 @@ const Progress = () => {
                 return (
                   <tr
                     key={record._id}
-                    className="text-gray-700 dark:text-gray-300"
+                    className="hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                   >
-                    <td>{emp ? emp.name : "Unknown"}</td>
+                    <td>{emp ? emp.name : record.name || "Unknown"}</td>
                     <td>{record.tasks}</td>
                     <td>{record.hours}</td>
                     <td>
@@ -147,9 +154,9 @@ const Progress = () => {
               <tr>
                 <td
                   colSpan="4"
-                  className="text-center p-6 text-gray-500 dark:text-gray-400"
+                  className="text-center p-6 italic text-gray-500 dark:text-gray-400"
                 >
-                  No records found.
+                  No records found for selected filters.
                 </td>
               </tr>
             )}
