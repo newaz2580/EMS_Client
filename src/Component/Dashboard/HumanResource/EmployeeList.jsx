@@ -18,12 +18,12 @@ const EmployeeList = () => {
       return res.data;
     },
   });
-  // console.log(data);
+  console.log(data);
 
   const handleVerified = async (id, isVerified) => {
     try {
       const { data } = await axiosSecure.patch(`/users/${id}`, {
-        isVerified: !isVerified, // 🔁 Toggle the current status
+        isVerified: !isVerified, 
       });
 
       if (data.modifiedCount > 0) {

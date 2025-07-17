@@ -17,7 +17,7 @@ const Payroll = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4 ">Payment Approvals</h2>
+      <h2 className="text-xl font-bold mb-4 dark:text-white ">Payment Approvals</h2>
       <table className="table w-full">
         <thead>
           <tr className="text-black dark:text-white">

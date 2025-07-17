@@ -33,7 +33,7 @@ const Login = () => {
             navigate('/')
             setLoading(false)
   }).catch(error=>{
-    toast.error(error)
+    toast.error(error.message)
     setLoading(false)
   })
   }

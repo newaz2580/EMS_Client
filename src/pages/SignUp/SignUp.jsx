@@ -11,44 +11,50 @@ const Signup = () => {
   const [loading,setLoading]=useState(false)
   const navigate = useNavigate();
 
-  const handleRegistrationForm = async (e) => {
-    setLoading(true)
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const designation = form.designation.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const bank_account_no = form.account_no.value;
-    const salary = form.salary.value;
-    const image = form?.image?.files[0];
+ const handleRegistrationForm = async (e) => {
+  setLoading(true);
+  e.preventDefault();
+  const form = e.target;
+  const name = form.name.value;
+  const designation = form.designation.value;
+  const email = form.email.value;
+  const password = form.password.value;
+  const bank_account_no = form.account_no.value;
+  const salary = form.salary.value;
+  const image = form?.image?.files[0];
 
-    try {
-      const imageURL = await uploadImage(image);
-      const result = await createUserSignupAccount(email, password);
-      toast.success("Sign up successful!");
-      await updateUserProfile(name, imageURL);
-      navigate('/')
-    
-      const userData = {
-        name,
-        designation,
-        email,
-        bank_account_no,
-        salary,
-        imageURL,
-        role: userRole,
-      };
-      await saveUserInfo(userData);
-      navigate("/"); 
-    } catch (error) {
-     
-      toast.error(error)
-      toast.error("Signup failed. Try again.");
-    }finally{
-      setLoading(false)
-    }
-  };
+  // Password validation: At least 1 uppercase, 1 lowercase, and 1 special character
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).+$/;
+  if (!passwordRegex.test(password)) {
+    toast.error("Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character.");
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const imageURL = await uploadImage(image);
+    const result = await createUserSignupAccount(email, password);
+    toast.success("Sign up successful!");
+    await updateUserProfile(name, imageURL);
+    navigate("/");
+
+    const userData = {
+      name,
+      designation,
+      email,
+      bank_account_no,
+      salary,
+      imageURL,
+      role: userRole,
+    };
+    await saveUserInfo(userData);
+    navigate("/");
+  } catch (error) {
+    toast.error(error?.message || "Signup failed. Try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

@@ -1,11 +1,5 @@
 import DatePicker from "react-datepicker"
-
-
-
 const WorkSheetModal=({editing,setEditing,handleUpdate})=> {
-
-
-
   return (
     <>
      {editing && (

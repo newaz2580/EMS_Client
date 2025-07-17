@@ -122,7 +122,9 @@ const WorkSheet = () => {
           className="border p-2 rounded dark:bg-gray-800 dark:text-white"
           required
         >
-          <option value="" className="">Select Task</option>
+          <option value="" className="">
+            Select Task
+          </option>
           <option value="Sales">Sales</option>
           <option value="Support">Support</option>
           <option value="Content">Content</option>
@@ -165,15 +167,15 @@ const WorkSheet = () => {
         </thead>
         <tbody>
           {workList.length === 0 ? (
-            <>
-             
-                <p className="text-center w-full dark:text-white">No Tasks Added Yet</p>
-             
-            </>
+            <tr>
+              <td colSpan="100%" className="text-center py-4 dark:text-white">
+                No Tasks Added Yet
+              </td>
+            </tr>
           ) : (
             <>
               {workList?.map((item) => (
-                <tr key={item._id} className="border-t">
+                <tr key={item._id} className="border-t dark:text-white">
                   <td className="p-2">{item.tasks}</td>
                   <td className="p-2">{item.hours}</td>
                   <td className="p-2">{item.date}</td>

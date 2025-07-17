@@ -10,6 +10,7 @@ const PaymentHistory = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['payment-history', user?.email, page],
+    
     queryFn: async () => {
       const res = await axiosSecure.get(`/payment-history?email=${user?.email}&page=${page}&limit=5`);
       return res.data;
@@ -17,7 +18,7 @@ const PaymentHistory = () => {
     enabled: !!user?.email,
     keepPreviousData: true,
   });
-
+  console.log(data)
   if (isLoading) return <p>Loading payment history...</p>;
   if (error) return <p>Failed to load payment history.</p>;
 

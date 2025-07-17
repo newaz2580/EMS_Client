@@ -70,7 +70,7 @@ const CheckoutForm = ({ pay, setIsOpen, onSuccess }) => {
     <form onSubmit={handleSubmit}>
       <CardElement />
       {cardError && <p className="text-red-500">{cardError}</p>}
-      <button type="submit" className="btn" disabled={!stripe || processing}>
+      <button type="submit" className="btn mt-2" disabled={!stripe || processing}>
         {processing ? 'Paying...' : `Pay ৳${salary}`}
       </button>
     </form>

@@ -129,12 +129,12 @@ const AllEmployeeList = () => {
               className="card bg-base-100 shadow-xl border border-gray-200"
             >
               <div className="card-body">
-                <h2 className="card-title">{user.name}</h2>
-                <p>Designation: {user.designation}</p>
-                <p>Salary: ৳{user.salary}</p>
-                <p>Role: {user.role}</p>
-                <div className="mt-2 flex gap-2">
-                  {user.role !== "hr" && (
+                <h2 className="card-title text-black dark:text-white">{user.name}</h2>
+                <p className="text-black dark:text-white">Designation: {user.designation}</p>
+                <p className="text-black dark:text-white">Salary: ৳{user.salary}</p>
+                <p className="text-black dark:text-white">Role: {user.role}</p>
+                <div className="mt-2 flex gap-2 ">
+                  {user.role !== "HR" && (
                     <button
                       className="btn btn-xs btn-info"
                       onClick={() => handleMakeHR(user._id)}
@@ -154,7 +154,7 @@ const AllEmployeeList = () => {
                   )}
                 </div>
                 <button
-                  className="btn btn-xs btn-outline mt-2"
+                  className="btn btn-xs btn-outline mt-2 text-black dark:text-white"
                   onClick={() => handleSalaryUpdate(user._id, parseInt(user.salary))}
                 >
                   Adjust Salary

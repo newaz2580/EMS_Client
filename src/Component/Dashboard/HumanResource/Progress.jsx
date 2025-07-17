@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -9,7 +8,7 @@ const Progress = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-  // Get all users for dropdown
+  // Fetch verified users for dropdown
   const { data: users = [] } = useQuery({
     queryKey: ["verified-users"],
     queryFn: async () => {
@@ -18,7 +17,7 @@ const Progress = () => {
     },
   });
 
-  // Get all work records
+  // Fetch all work records
   const { data: workRecords = [], isLoading } = useQuery({
     queryKey: ["workSheet"],
     queryFn: async () => {
@@ -27,7 +26,7 @@ const Progress = () => {
     },
   });
 
-  // Filter logic
+  // Filter work records by selected employee and month
   useEffect(() => {
     let filtered = [...workRecords];
 
@@ -47,21 +46,27 @@ const Progress = () => {
     setFilteredData(filtered);
   }, [selectedEmployee, selectedMonth, workRecords]);
 
+  // Calculate total work hours from filtered data
   const totalHours = filteredData.reduce(
     (sum, record) => sum + parseFloat(record.hours || 0),
     0
   );
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center py-6 text-lg dark:text-white">Loading...</p>
+    );
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4 dark:text-white">Employee Work Records</h2>
+    <div className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
+        Employee Work Records
+      </h2>
 
-      {/* 🟩 Filters */}
-      <div className="flex flex-wrap gap-4 mb-4">
+      {/* Filters */}
+      <div className="flex flex-wrap gap-4 mb-6 justify-center">
         <select
-          className="select  text-white"
+          className="select select-bordered w-60 dark:bg-gray-700 dark:text-white"
           value={selectedEmployee}
           onChange={(e) => setSelectedEmployee(e.target.value)}
         >
@@ -74,14 +79,24 @@ const Progress = () => {
         </select>
 
         <select
-          className="select select-bordered text-white"
+          className="select select-bordered w-48 dark:bg-gray-700 dark:text-white"
           value={selectedMonth}
           onChange={(e) => setSelectedMonth(e.target.value)}
         >
           <option value="">All Months</option>
           {[
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December",
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
           ].map((month) => (
             <option key={month} value={month}>
               {month}
@@ -90,37 +105,56 @@ const Progress = () => {
         </select>
       </div>
 
-      {/* 🟩 Work Hours Summary */}
-      <div className="mb-4 text-lg font-medium dark:text-white">
-        Total Work Hours: <span className="text-green-600">{totalHours}</span>
+      {/* Total Work Hours */}
+      <div className="mb-6 text-center text-xl font-semibold text-gray-800 dark:text-green-400">
+        Total Work Hours: <span>{totalHours.toFixed(2)}</span> hours
       </div>
 
-      {/* Table */}
-      <div className="overflow-x-auto">
+      {/* Work Records Table */}
+      <div className="overflow-x-auto rounded-lg shadow bg-white dark:bg-gray-800">
         <table className="table w-full">
           <thead>
-            <tr className="text-black dark:text-white">
-              <th>Employee</th>
+            <tr className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+              <th>Employee Name</th>
               <th>Task</th>
               <th>Hours</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((record) => (
-              <tr key={record._id} className="text-black dark:text-white">
-                <td>{record.name}</td>
-                <td>{record.tasks}</td>
-                <td>{record.hours}</td>
-                <td>{new Date(record.date).toLocaleDateString()}</td>
+            {filteredData.length > 0 ? (
+              filteredData.map((record) => {
+                const emp = users.find((u) => u.email === record.email);
+                return (
+                  <tr
+                    key={record._id}
+                    className="text-gray-700 dark:text-gray-300"
+                  >
+                    <td>{emp ? emp.name : "Unknown"}</td>
+                    <td>{record.tasks}</td>
+                    <td>{record.hours}</td>
+                    <td>
+                      {new Date(record.date).toLocaleDateString(undefined, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td
+                  colSpan="4"
+                  className="text-center p-6 text-gray-500 dark:text-gray-400"
+                >
+                  No records found.
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
-
-        {filteredData.length === 0 && (
-          <p className="text-center text-black dark:text-white py-4">No records found</p>
-        )}
       </div>
     </div>
   );
