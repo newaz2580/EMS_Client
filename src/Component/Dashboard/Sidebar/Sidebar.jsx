@@ -17,21 +17,19 @@ const Sidebar = () => {
   const { userLogout } = useAuth();
   const [isActive, setActive] = useState(true);
   const [role,isLoading]=useUserRole ()
-  console.log(role,isLoading)
-//   console.log(role,isLoading)
+
 const navigate=useNavigate()
   const handleLogout = () => {
 
-        console.log("OK2")
+       
 
 
     userLogout()
       .then(() => {
-        console.log("OK")
         toast.success('Logout Successful');
         navigate('/')
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error));
   };
   // Sidebar Responsive Handler
   const handleToggle = () => {

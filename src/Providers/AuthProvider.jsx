@@ -85,7 +85,7 @@ const AuthProvider = ({ children }) => {
     darkMode,
     setDarkMode
   };
-  // console.log(user);
+  
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
 

@@ -46,7 +46,7 @@ const CheckoutForm = ({ pay, setIsOpen, onSuccess }) => {
       payment_method: paymentMethod.id,
     });
 
-    console.log(data)
+   
 
     const  { paymentIntent, error: confirmError } = data;
 

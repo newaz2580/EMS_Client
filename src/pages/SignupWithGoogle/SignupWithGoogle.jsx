@@ -10,7 +10,7 @@ const SignupWithGoogle = () => {
   const handleSignUpGoogle=()=>{
     userSignUpWithGoogle()
     .then(result=>{
-        console.log(result)
+        
         toast.success('SignIn Successful')
         const name=result.user.displayName;
         const email=result.user.email;
@@ -24,7 +24,7 @@ const SignupWithGoogle = () => {
         saveUserInfo(userData)
         navigate('/')
     }).catch(error=>{
-        console.log(error)
+        toast.error(error)
     })
   }
   return (

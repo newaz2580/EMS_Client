@@ -16,7 +16,7 @@ const Navbar = () => {
         setIsDropDownOpen(false);
         navigate('/')
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error));
   };
 
   return (

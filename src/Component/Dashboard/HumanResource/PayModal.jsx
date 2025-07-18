@@ -22,7 +22,7 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
     salaryInfo.EmployeeName=userData.name
     salaryInfo.requestedBy = user.email;
     salaryInfo.employeeEmail=userData.email
-    // console.log(salaryInfo);
+ 
    try {
   const { data } = await axiosSecure.post("/payment-request", salaryInfo);
   if (data.insertedId) {
@@ -49,7 +49,7 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
       confirmButtonText: "OK",
     });
   }
-  console.log(error);
+ 
 }
   };
   return (

@@ -3,6 +3,7 @@ import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Message from './Message';
 import LoadingSpinner from '../../../pages/LoadingSpinner/LoadingSpinner';
+import { toast } from 'react-toastify';
 
 const UserFeedBack = () => {
     const axiosSecure=useAxiosSecure()
@@ -13,7 +14,7 @@ const UserFeedBack = () => {
             const res=await axiosSecure.get('/user/message')
             return res.data
          } catch (error) {
-            console.log(error)
+            toast.error(error)
          }
         }
     })

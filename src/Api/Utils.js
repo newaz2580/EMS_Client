@@ -20,5 +20,5 @@ export const uploadImage = async (imageData) => {
 
 export const saveUserInfo=(userInfo)=>{
 const result=axios.post(`${import.meta.env.VITE_API_KEY}/users`,userInfo)
-console.log(result)
+
 }

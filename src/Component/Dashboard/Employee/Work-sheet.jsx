@@ -37,8 +37,8 @@ const WorkSheet = () => {
       setHours("");
       setLoading(false);
     } catch (error) {
-      console.log(error);
-      toast.error("❌ Failed to add task");
+      
+      toast.error("❌ Failed to add task",error);
       setLoading(false);
     }
   };
