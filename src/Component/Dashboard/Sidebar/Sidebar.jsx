@@ -7,8 +7,9 @@ import { Link, NavLink } from "react-router";
 import Employee from "../Employee/Employee";
 import HumanResource from "../HumanResource/HumanResource";
 import Admin from "../Admin/Admin";
-import useUserRole  from "../../hooks/userRole";
+
 import DarkModeToggler from "../../Shared/DarkModeToggler";
+import useUserRole from "../../hooks/UserRole";
 
 
 const Sidebar = () => {
@@ -22,7 +23,7 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
-//   if(isLoading)return <LoadingSpinner></LoadingSpinner>
+  if(isLoading)return <p>Loading....</p>
   return (
     <>
       {/* Small Screen Navbar */}

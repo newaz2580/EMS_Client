@@ -1,12 +1,79 @@
-# React + Vite
+# 💼 Employee Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An advanced **Employee Management Platform** that provides full control over employee records, salary disbursements, HR and Admin access, authentication, and insightful dashboard summaries.
 
-Currently, two official plugins are available:
+🔗 **Live Website**: [https://employee-management-app-e3a87.web.app](https://employee-management-app-e3a87.web.app)  
+🔑 **Admin Login**  
+- **Email**: admin@gmail.com  
+- **Password**: 123456
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+✅ **Secure Firebase Authentication**  
+- Login via Email/Password and Google  
+- Cookie-based JWT auth system for secure access  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✅ **Role-Based Dashboard Routing**  
+- Dynamic redirects based on user role (Admin / HR / Employee)  
+- Unauthorized access protection with route guards  
+
+✅ **HR Dashboard Functionalities**  
+- Filter employee work records by name and month  
+- View total work hours and payroll summary  
+- Approve salary payments with Stripe integration  
+- Prevent duplicate salary disbursements for the same month
+
+✅ **Admin Panel Capabilities**  
+- View and manage all registered users  
+- Promote regular users to HR  
+- Fire (block) users and revoke access  
+- Update employee salary (increment only)  
+- Toggle between Table and Card view of employees  
+
+✅ **Employee Panel**  
+- View personal salary and work records  
+- Check payment status (Paid / Unpaid)  
+- Submit availability and request updates  
+
+✅ **Stripe Payment Integration**  
+- HRs can approve and issue salaries via Stripe  
+- Secure and reliable transaction handling  
+- Automatic record logging in MongoDB  
+
+✅ **Responsive UI with Tailwind CSS + DaisyUI**  
+- Clean, modern, and mobile-friendly design  
+- Light/Dark mode support  
+
+✅ **Dashboard Overview**  
+- Real-time stats for Admin, HR, and Employees  
+- Total employees, pending payments, and more  
+
+✅ **Secure Backend with Express & MongoDB**  
+- All APIs are protected with JWT verification  
+- Role-based access and actions on the server side  
+
+✅ **Full Stack Architecture**  
+- Frontend: React, TanStack Query, Tailwind CSS  
+- Backend: Express.js, MongoDB, Firebase Admin SDK  
+- Auth: Firebase Auth with JWT Cookies  
+- Payment: Stripe API
+
+---
+
+## 🛠️ Technologies Used
+
+- JavaScript 
+- React.js   
+- Headless,Flowbite,Material tailwind others 
+- Tailwind CSS  
+- React Router DOM  
+- Firebase Authentication  
+- Express.js + MongoDB  
+- Axios + React Query  
+- Stripe Payment API  
+- JWT (HTTP-only Cookie-based auth)  
+- Vercel (Client) & Render (Server) Deployment
+
+
+
+

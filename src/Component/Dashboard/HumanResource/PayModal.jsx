@@ -23,20 +23,34 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
     salaryInfo.requestedBy = user.email;
     salaryInfo.employeeEmail=userData.email
     // console.log(salaryInfo);
-    try {
-      const { data } = await axiosSecure.post("/payment-request", salaryInfo);
-      if (data.insertedId) {
-        Swal.fire({
-          title: "Payment request Successful",
-          icon: "success",
-          draggable: true,
-        });
-        setIsOpen(false)
-      }
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+   try {
+  const { data } = await axiosSecure.post("/payment-request", salaryInfo);
+  if (data.insertedId) {
+    Swal.fire({
+      title: "Payment request Successful",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+    setIsOpen(false);
+  }
+} catch (error) {
+  if (error?.response?.status === 400) {
+    Swal.fire({
+      title: "Request Failed",
+      text: error.response.data.message || "Payment request already exists.",
+      icon: "warning",
+      confirmButtonText: "OK",
+    });
+  } else {
+    Swal.fire({
+      title: "Error",
+      text: "Something went wrong. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
+  console.log(error);
+}
   };
   return (
     <Dialog
