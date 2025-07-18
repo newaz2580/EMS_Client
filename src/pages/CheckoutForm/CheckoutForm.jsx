@@ -42,9 +42,13 @@ const CheckoutForm = ({ pay, setIsOpen, onSuccess }) => {
       return;
     }
 
-    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+    const data = await stripe.confirmCardPayment(clientSecret, {
       payment_method: paymentMethod.id,
     });
+
+    console.log(data)
+
+    const  { paymentIntent, error: confirmError } = data;
 
     if (confirmError) {
       setCardError(confirmError.message);

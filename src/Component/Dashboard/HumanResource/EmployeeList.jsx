@@ -41,24 +41,6 @@ const EmployeeList = () => {
     setIsOpen(true);
   };
 
-  // Increase salary by 5% (example) and update backend
-  const handleIncreaseSalary = async (user) => {
-    try {
-      const newSalary = Math.round(user.salary * 1.05);
-      const { data } = await axiosSecure.patch(`/users/${user._id}`, {
-        salary: newSalary,
-      });
-
-      if (data.modifiedCount > 0) {
-        toast.success(`Salary increased to ৳${newSalary}`);
-        refetch();
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to increase salary");
-    }
-  };
-
   return (
     <div className="overflow-x-auto rounded-lg shadow-md mt-5 bg-white dark:bg-gray-900 p-6 max-w-7xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">
@@ -73,7 +55,6 @@ const EmployeeList = () => {
             <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Verified</th>
             <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Bank Account</th>
             <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Salary</th>
-            <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Increase Salary</th>
             <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Pay</th>
             <th className="px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider">Details</th>
           </tr>
@@ -82,7 +63,7 @@ const EmployeeList = () => {
         <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 text-gray-800 dark:text-gray-100">
           {users.length === 0 ? (
             <tr>
-              <td colSpan="8" className="text-center py-6 text-gray-500 dark:text-gray-400">
+              <td colSpan="7" className="text-center py-6 text-gray-500 dark:text-gray-400">
                 No employees found.
               </td>
             </tr>
@@ -103,22 +84,6 @@ const EmployeeList = () => {
                 </td>
                 <td className="px-6 py-4 text-center">{user.bank_account_no || "N/A"}</td>
                 <td className="px-6 py-4 text-center font-semibold">৳ {user.salary}</td>
-
-                <td className="px-6 py-4 text-center">
-                  <button
-                    onClick={() => handleIncreaseSalary(user)}
-                    disabled={!user.isVerified}
-                    className={`px-3 py-1 rounded-md text-white font-medium transition-colors duration-200 ${
-                      user.isVerified
-                        ? "bg-yellow-500 hover:bg-yellow-600"
-                        : "bg-gray-400 cursor-not-allowed"
-                    }`}
-                    title="Increase Salary by 5%"
-                  >
-                    +
-                  </button>
-                </td>
-
                 <td className="px-6 py-4 text-center">
                   <button
                     disabled={!user.isVerified}
@@ -133,7 +98,6 @@ const EmployeeList = () => {
                     Pay
                   </button>
                 </td>
-
                 <td className="px-6 py-4 text-center">
                   <Link to={`/dashboard/employeeDetails/${user.email}`}>
                     <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-md transition-colors duration-200">

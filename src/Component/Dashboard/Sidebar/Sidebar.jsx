@@ -3,13 +3,14 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { AiOutlineBars } from "react-icons/ai";
 import { GrLogout } from "react-icons/gr";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import Employee from "../Employee/Employee";
 import HumanResource from "../HumanResource/HumanResource";
 import Admin from "../Admin/Admin";
 
 import DarkModeToggler from "../../Shared/DarkModeToggler";
 import useUserRole from "../../hooks/UserRole";
+import { toast } from "react-toastify";
 
 
 const Sidebar = () => {
@@ -18,7 +19,20 @@ const Sidebar = () => {
   const [role,isLoading]=useUserRole ()
   console.log(role,isLoading)
 //   console.log(role,isLoading)
+const navigate=useNavigate()
+  const handleLogout = () => {
 
+        console.log("OK2")
+
+
+    userLogout()
+      .then(() => {
+        console.log("OK")
+        toast.success('Logout Successful');
+        navigate('/')
+      })
+      .catch((error) => console.log(error));
+  };
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -101,7 +115,7 @@ const Sidebar = () => {
             address="/dashboard/profile"
           /> */}
           <button
-            onClick={userLogout}
+            onClick={handleLogout}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />

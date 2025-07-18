@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router'; 
+import { Link, useNavigate } from 'react-router'; 
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
 import DarkModeToggler from '../Shared/DarkModeToggler';
@@ -8,12 +8,13 @@ const Navbar = () => {
   const { userLogout, user } = useAuth();
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
-
+  const navigate=useNavigate()
   const handleLogout = () => {
     userLogout()
       .then(() => {
         toast.success('Logout Successful');
         setIsDropDownOpen(false);
+        navigate('/')
       })
       .catch((error) => console.log(error));
   };
