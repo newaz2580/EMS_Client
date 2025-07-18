@@ -2,10 +2,10 @@
 
 An advanced **Employee Management Platform** that provides full control over employee records, salary disbursements, HR and Admin access, authentication, and insightful dashboard summaries.
 
-🔗 **Live Website**: [https://employee-management-app-e3a87.web.app](https://employee-management-app-e3a87.web.app)  
+🔗 **Live Website**: [https://employee-management-app-e3a87.web.app]  
 🔑 **Admin Login**  
 - **Email**: admin@gmail.com  
-- **Password**: 123456
+- **Password**: 123456Aa@
 
 ## 🚀 Features
 
