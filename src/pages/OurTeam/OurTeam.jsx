@@ -66,7 +66,7 @@ const OurTeam = () => {
           {teamMembers.map((member, idx) => (
             <div
               key={idx}
-              className="bg-white dark:bg-green-950 rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300"
+              className="bg-white dark:bg-gray-950 rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300"
             >
               <img
                 src={member.image}
@@ -74,7 +74,7 @@ const OurTeam = () => {
                 className="w-28 h-28 object-cover rounded-full mx-auto mb-4 border-4 border-indigo-200"
               />
               <h3 className="text-xl font-bold text-black dark:text-white text-center">{member.name}</h3>
-              <p className="text-green-500 text-center font-medium">{member.title}</p>
+              <p className="text-blue-800 text-center font-medium">{member.title}</p>
               <p className="text-black dark:text-white text-sm mt-2 text-center">{member.bio}</p>
             </div>
           ))}

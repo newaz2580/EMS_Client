@@ -52,7 +52,7 @@ const ServicesSection = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white text-black dark:bg-green-950 dark:text-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300"
+            className="bg-white text-black dark:bg-gray-950 dark:text-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300"
           >
             <div className="flex justify-center mb-4">{service.icon}</div>
             <h3 className="text-xl font-semibold text-center mb-2 text-black dark:text-white">{service.title}</h3>

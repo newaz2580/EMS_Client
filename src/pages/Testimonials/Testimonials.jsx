@@ -83,7 +83,7 @@ const Testimonials = () => {
       <Slider {...settings}>
         {testimonials.map((item, index) => (
           <div key={index} className="px-2">
-            <div className="bg-white dark:bg-green-950 dark:text-white rounded-lg shadow p-4 h-64 my-5 text-center">
+            <div className="bg-white dark:bg-gray-950 dark:text-white rounded-lg shadow p-4 h-64 my-5 text-center">
               <img
                 src={item.image}
                 alt={item.name}
