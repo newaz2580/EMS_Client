@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router'; 
+import { NavLink, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { toast } from 'react-toastify';
 import DarkModeToggler from '../Shared/DarkModeToggler';
@@ -8,26 +8,30 @@ const Navbar = () => {
   const { userLogout, user } = useAuth();
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     userLogout()
       .then(() => {
         toast.success('Logout Successful');
         setIsDropDownOpen(false);
-        navigate('/')
+        navigate('/');
       })
       .catch((error) => toast.error(error));
   };
+
+  const activeClass = "text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700"; // active class
+  const normalClass = "text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white";
 
   return (
     <nav className="bg-white text-black dark:text-white border-gray-200 dark:bg-gray-900 sticky top-0 z-12">
       <div className="max-w-11/12 mx-auto flex flex-wrap items-center justify-between p-4">
         {/* Logo & Dark Mode */}
         <div className='flex items-center'>
-          <Link to="/" className="flex items-center space-x-3">
+          <NavLink to="/" className="flex items-center space-x-3">
             <img src="https://i.ibb.co/Lh0mPbxs/logo-2.jpg" className="h-8 rounded-full" alt="Logo" />
             <span className="text-2xl font-semibold">EMS</span>
-          </Link>
+          </NavLink>
           <div className='ml-2 mt-1'>
             <DarkModeToggler />
           </div>
@@ -45,9 +49,9 @@ const Navbar = () => {
               <img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="user" />
             </button>
           ) : (
-            <Link to="/login">
+            <NavLink to="/login">
               <button className="btn btn-primary text-white">Login</button>
-            </Link>
+            </NavLink>
           )}
 
           {/* Hamburger toggle */}
@@ -86,26 +90,26 @@ const Navbar = () => {
         >
           <ul className="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <Link to="/" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">
+              <NavLink to="/" className={({ isActive }) => isActive ? activeClass : normalClass}>
                 Home
-              </Link>
+              </NavLink>
             </li>
             {user && (
               <li>
-                <Link to="/dashboard" className="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white">
+                <NavLink to="/dashboard" className={({ isActive }) => isActive ? activeClass : normalClass}>
                   Dashboard
-                </Link>
+                </NavLink>
               </li>
             )}
             <li>
-              <Link to="/contact" className="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white">
+              <NavLink to="/contact" className={({ isActive }) => isActive ? activeClass : normalClass}>
                 Contact Us
-              </Link>
+              </NavLink>
             </li>
-             <li>
-              <Link to="/about" className="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 md:p-0 dark:text-white">
+            <li>
+              <NavLink to="/about" className={({ isActive }) => isActive ? activeClass : normalClass}>
                 About
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
