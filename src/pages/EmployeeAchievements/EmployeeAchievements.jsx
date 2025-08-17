@@ -2,7 +2,7 @@ import React from "react";
 import { FaAward, FaUsers, FaClock } from "react-icons/fa";
 
 const EmployeeAchievements = () => {
-  // Hardcoded relevant employee stats for EMS
+  
   const achievements = [
     {
       icon: <FaAward className="text-yellow-400 w-12 h-12 mx-auto mb-4" />,
