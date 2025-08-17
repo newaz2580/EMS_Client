@@ -17,6 +17,9 @@ import UserFeedBack from "../Component/Dashboard/Admin/UserFeedBack";
 import PrivateRoutes from "../pages/Routes/PrivateRoutes";
 import HrRoutes from "../pages/Routes/HrRoutes";
 import AdminRoutes from "../pages/Routes/AdminRoutes";
+import About from "../pages/About/About";
+import Profile from "../Component/Shared/Profile";
+import Overview from "../Component/Dashboard/Overview";
 
 export const router=createBrowserRouter([
     {
@@ -39,6 +42,10 @@ export const router=createBrowserRouter([
      {
       path:'contact',
       element:<ContactUS></ContactUS>
+     },
+     {
+      path:'about',
+      element:<About/>
      }
      ]
     },
@@ -46,6 +53,10 @@ export const router=createBrowserRouter([
       path:'dashboard',
       element:<DashboardLayout/>,
       children:[
+         {
+          index:true,
+          element:<PrivateRoutes><Overview></Overview></PrivateRoutes>
+         },
          {
             path:'workSheet',
             element:<PrivateRoutes><WorkSheet/></PrivateRoutes>
@@ -89,7 +100,17 @@ export const router=createBrowserRouter([
             element:<PrivateRoutes>
             <AdminRoutes><UserFeedBack/></AdminRoutes>
             </PrivateRoutes>
-         }
+         },
+         {
+            path:'profile',
+            element:<PrivateRoutes>
+               <Profile/>
+            </PrivateRoutes>
+         },
+         // {
+         //    path:'overview',
+         //    element:<Overview/>
+         // }
       ]
     }
 ])

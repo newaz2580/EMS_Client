@@ -71,7 +71,7 @@ const AllEmployeeList = () => {
 
       {viewMode === "table" ? (
         <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
+          <table className="table w-full">
             <thead>
               <tr className="text-black dark:text-white">
                 <th>Name</th>
@@ -123,13 +123,13 @@ const AllEmployeeList = () => {
           {users.map((user) => (
             <div
               key={user._id}
-              className="card bg-gray-200 dark:bg-base-100 shadow-xl border border-base-300 text-black dark:text-white"
+              className="card bg-gray-50 dark:bg-base-100 shadow text-black dark:text-white"
             >
               <div className="card-body">
-                <h2 className="card-title">{user.name}</h2>
-                <p>Designation: {user.designation}</p>
-                <p>Salary: ৳{user.salary}</p>
-                <p>Role: {user.role}</p>
+                <h2 className="card-title poppins-regular">{user.name}</h2>
+                <p className="inter">Designation: {user.designation}</p>
+                <p className="inter">Salary: ৳{user.salary}</p>
+                <p className="inter">Role: {user.role}</p>
                 <div className="mt-2 flex gap-2">
                   {user.role !== "hr" && (
                     <button
@@ -151,7 +151,7 @@ const AllEmployeeList = () => {
                   )}
                 </div>
                 <button
-                  className="btn btn-xs btn-outline mt-2"
+                  className="bg-blue-700 py-1 text-white rounded inter hover:bg-blue-900 translate-0.5 cursor-pointer mt-2"
                   onClick={() =>
                     handleSalaryUpdate(user._id, parseInt(user.salary))
                   }

@@ -57,8 +57,8 @@ const OurTeam = () => {
     <section className="py-5 bg-gray-100 dark:bg-gray-900">
       <div className="max-w-11/12 mx-auto px-4">
         <div className="text-center mb-5">
-          <h2 className="text-4xl font-extrabold text-black dark:text-white mb-4">Meet Our Professionals</h2>
-          <p className="text-black dark:text-white text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl font-extrabold text-black dark:text-white mb-4 poppins-regular">Meet Our Professionals</h2>
+          <p className="text-gray-700 dark:text-white text-lg max-w-2xl mx-auto inter ">
             Our dedicated team members work day and night to ensure the best employee experience.
           </p>
         </div>
@@ -73,9 +73,9 @@ const OurTeam = () => {
                 alt={member.name}
                 className="w-28 h-28 object-cover rounded-full mx-auto mb-4 border-4 border-indigo-200"
               />
-              <h3 className="text-xl font-bold text-black dark:text-white text-center">{member.name}</h3>
-              <p className="text-blue-800 text-center font-medium">{member.title}</p>
-              <p className="text-black dark:text-white text-sm mt-2 text-center">{member.bio}</p>
+              <h3 className="text-xl font-extrabold text-black dark:text-white text-center poppins-regular">{member.name}</h3>
+              <p className="text-blue-800 text-center font-bold inter">{member.title}</p>
+              <p className="text-gray-700 dark:text-white text-sm mt-2 text-center inter">{member.bio}</p>
             </div>
           ))}
         </div>

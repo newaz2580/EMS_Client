@@ -8,53 +8,59 @@ import { saveUserInfo, uploadImage } from "../../Api/Utils";
 const Signup = () => {
   const { createUserSignupAccount, updateUserProfile } = useAuth();
   const [userRole, setUserRole] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
- const handleRegistrationForm = async (e) => {
-  setLoading(true);
-  e.preventDefault();
-  const form = e.target;
-  const name = form.name.value;
-  const designation = form.designation.value;
-  const email = form.email.value;
-  const password = form.password.value;
-  const bank_account_no = form.account_no.value;
-  const salary = form.salary.value;
-  const image = form?.image?.files[0];
+  const handleRegistrationForm = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const designation = form.designation.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const bank_account_no = form.account_no.value;
+    const salary = form.salary.value;
+    const phone = form.phone.value;
+    const address = form.address.value;
+    const image = form?.image?.files[0];
 
-  // Password validation: At least 1 uppercase, 1 lowercase, and 1 special character
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).+$/;
-  if (!passwordRegex.test(password)) {
-    toast.error("Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character.");
-    setLoading(false);
-    return;
-  }
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).+$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character."
+      );
+      setLoading(false);
+      return;
+    }
 
-  try {
-    const imageURL = await uploadImage(image);
-    const result = await createUserSignupAccount(email, password);
-    toast.success("Sign up successful!");
-    await updateUserProfile(name, imageURL);
-    navigate("/");
+    try {
+      const imageURL = await uploadImage(image);
+      const result = await createUserSignupAccount(email, password);
+      toast.success("Sign up successful!");
+      await updateUserProfile(name, imageURL);
+      navigate("/");
 
-    const userData = {
-      name,
-      designation,
-      email,
-      bank_account_no,
-      salary,
-      imageURL,
-      role: userRole,
-    };
-    await saveUserInfo(userData);
-    navigate("/");
-  } catch (error) {
-    toast.error(error?.message || "Signup failed. Try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+      const userData = {
+        name,
+        designation,
+        email,
+        phone,
+        address,
+        bank_account_no,
+        salary,
+        imageURL,
+        role: userRole,
+      };
+      await saveUserInfo(userData);
+      navigate("/");
+    } catch (error) {
+      toast.error(error?.message || "Signup failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -123,6 +129,34 @@ const Signup = () => {
                 </div>
               </div>
 
+              {/* Phone & Address */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="+8801XXXXXXXXX"
+                    required
+                    className="input input-bordered w-full"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    placeholder="Enter your address"
+                    required
+                    className="input input-bordered w-full"
+                  />
+                </div>
+              </div>
+
               {/* Account no & Salary */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -185,21 +219,29 @@ const Signup = () => {
                 </div>
               </div>
 
-              <button disabled={loading} type="submit" className="btn btn-primary w-full">
-                {loading ? <span className="loading loading-spinner loading-sm text-white"></span>:'Create an account'}
+              <button
+                disabled={loading}
+                type="submit"
+                className="btn btn-primary w-full"
+              >
+                {loading ? (
+                  <span className="loading loading-spinner loading-sm text-white"></span>
+                ) : (
+                  "Create an account"
+                )}
               </button>
             </form>
-            <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                Already have an account?{" "}
-                <Link
-                  to="/login"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Login here
-                </Link>
-              </p>
-              <SignupWithGoogle />
 
+            <p className="text-sm text-center text-gray-500 dark:text-gray-400">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="font-medium text-blue-600 hover:underline"
+              >
+                Login here
+              </Link>
+            </p>
+            <SignupWithGoogle />
           </div>
         </div>
       </div>

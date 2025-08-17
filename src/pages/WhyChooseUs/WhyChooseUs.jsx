@@ -42,8 +42,8 @@ const WhyChooseUs = () => {
     <section className="py-5 bg-gray-100 dark:bg-gray-900">
       <div className="max-w-11/12 mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-black dark:text-white mb-4">Why Choose Us?</h2>
-          <p className="text-black dark:text-white text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-black dark:text-white mb-4 poppins-regular">Why Choose Us?</h2>
+          <p className="text-gray-700 dark:text-white text-lg max-w-2xl mx-auto inter">
             We make employee management smarter, faster, and more secure. Here’s what sets us apart:
           </p>
         </div>
@@ -52,8 +52,8 @@ const WhyChooseUs = () => {
             <div key={idx} className="flex gap-4 items-start">
               <CheckCircle className="text-green-500 w-6 h-6 mt-1" />
               <div>
-                <h4 className="text-xl font-semibold text-black dark:text-white">{reason.title}</h4>
-                <p className="text-black dark:text-white">{reason.desc}</p>
+                <h4 className="text-xl font-semibold text-black dark:text-white poppins-regular">{reason.title}</h4>
+                <p className="text-gray-700 dark:text-white inter">{reason.desc}</p>
               </div>
             </div>
           ))}

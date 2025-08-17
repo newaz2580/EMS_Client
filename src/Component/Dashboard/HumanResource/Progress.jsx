@@ -59,7 +59,7 @@ const Progress = () => {
 
   return (
     <div className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white poppins-regular">
         Employee Work Records
       </h2>
 
@@ -109,7 +109,7 @@ const Progress = () => {
 
       {/* Total Work Hours */}
       <div className="mb-6 text-center">
-        <span className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+        <span className="text-xl font-semibold text-gray-800 dark:text-gray-100 inter">
           Total Work Hours:
         </span>{" "}
         <span className="text-green-600 dark:text-green-400 font-bold">
@@ -121,7 +121,7 @@ const Progress = () => {
       <div className="overflow-x-auto rounded-lg shadow bg-white dark:bg-gray-800">
         <table className="table w-full">
           <thead>
-            <tr className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            <tr className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white poppins-regular">
               <th>Employee Name</th>
               <th>Task</th>
               <th>Hours</th>
@@ -135,7 +135,7 @@ const Progress = () => {
                 return (
                   <tr
                     key={record._id}
-                    className="hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+                    className="hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 inter"
                   >
                     <td>{emp ? emp.name : record.name || "Unknown"}</td>
                     <td>{record.tasks}</td>

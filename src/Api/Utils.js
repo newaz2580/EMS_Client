@@ -18,7 +18,13 @@ export const uploadImage = async (imageData) => {
   }
 };
 
-export const saveUserInfo=(userInfo)=>{
-const result=axios.post(`${import.meta.env.VITE_API_KEY}/users`,userInfo)
-
-}
+// 🔹 Important: Make this function async and await axios.post
+export const saveUserInfo = async (userInfo) => {
+  try {
+    const res = await axios.post(`${import.meta.env.VITE_API_KEY}/users`, userInfo);
+    return res.data; // optional, যদি frontend-এ result ব্যবহার করতে চাও
+  } catch (error) {
+    console.error("Failed to save user info:", error);
+    throw error;
+  }
+};

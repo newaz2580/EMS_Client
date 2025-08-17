@@ -79,7 +79,7 @@ const Testimonials = () => {
 
   return (
     <div className="max-w-11/12 mx-auto  my-5 bg-gray-100 dark:bg-gray-900">
-      <h2 className="text-center text-3xl font-bold py-5">Testimonials</h2>
+      <h2 className="text-center text-4xl font-bold py-5 poppins-regular">Testimonials</h2>
       <Slider {...settings}>
         {testimonials.map((item, index) => (
           <div key={index} className="px-2">
@@ -89,8 +89,8 @@ const Testimonials = () => {
                 alt={item.name}
                 className="mx-auto w-24 h-24 rounded-full object-cover mb-2"
               />
-              <h3 className="text-lg font-semibold text-black dark:text-white">{item.name}</h3>
-              <p className="text-black mt-2 text-sm dark:text-white">{item.text}</p>
+              <h3 className="text-lg font-semibold text-black dark:text-white poppins-regular">{item.name}</h3>
+              <p className="text-gray-700 mt-2 text-sm dark:text-white inter">{item.text}</p>
             </div>
           </div>
         ))}
