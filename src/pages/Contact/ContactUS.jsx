@@ -29,10 +29,10 @@ const ContactUS = () => {
 
   return (
     <>
-    <h2 className="text-3xl font-bold text-green-700 bg-gray-100 dark:bg-gray-900  dark:text-white text-center">
+    <h2 className=" text-3xl font-bold text-green-700 bg-gray-100 dark:bg-gray-900  dark:text-white text-center">
           Contact Us
         </h2>
-    <div className="flex flex-col md:flex-row justify-between items-start gap-12 p-10 bg-gray-100 dark:bg-gray-900">
+    <div className="flex  md:px-12  flex-col md:flex-row justify-between items-start gap-12 p-10 bg-gray-100 dark:bg-gray-900">
       {/* Left Side: Contact Info */}
       
       <div className="flex-1 text-left space-y-4 max-w-lg">
