@@ -14,9 +14,9 @@ const AllEmployeeList = () => {
       return res.data;
     },
   });
-
+ 
   const handleMakeHR = async (id) => {
-    await axiosSecure.patch(`/users/${id}`, { role: "hr" });
+    await axiosSecure.patch(`/users/${id}`, { role: "HR" });
     refetch();
   };
 
@@ -90,7 +90,7 @@ const AllEmployeeList = () => {
                   <td>৳{user.salary}</td>
                   <td>{user.role}</td>
                   <td>
-                    {user.role !== "hr" ? (
+                    {user.role !== "HR" ? (
                       <button
                         className="btn btn-xs btn-info"
                         onClick={() => handleMakeHR(user._id)}

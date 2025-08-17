@@ -13,15 +13,16 @@ const Overview = () => {
   const [stats, setStats] = useState(null);
   const [feedbackCount, setFeedbackCount] = useState(0);
 
-  useEffect(() => {
+useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axiosSecure.get("/dashboard/stats"); // dashboard stats endpoint
+        // Fetch dashboard stats
+        const res = await axiosSecure.get("/dashboard/stats");
         setStats(res.data || {});
 
-        // Fetch feedback count
-        const feedbackRes = await axiosSecure.get("/dashboard/feedback"); // correct endpoint
-        setFeedbackCount(feedbackRes.data?.count || 0); // backend returns { count, feedbacks }
+        // Fetch feedback messages
+        const feedbackRes = await axiosSecure.get("/user/message"); 
+        setFeedbackCount(feedbackRes.data?.length || 0); 
       } catch (error) {
         toast.error("Failed to fetch stats or feedback");
       } finally {

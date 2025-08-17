@@ -30,15 +30,14 @@ const WorkSheet = () => {
       date: startDate.toISOString().split("T")[0],
     };
     try {
-      const res = await axiosSecure.post("/workSheet", newWork);
+      await axiosSecure.post("/workSheet", newWork);
       toast.success("✅ Task added successfully!");
       refetch();
       setTasks("");
       setHours("");
       setLoading(false);
     } catch (error) {
-      
-      toast.error("❌ Failed to add task",error);
+      toast.error("❌ Failed to add task");
       setLoading(false);
     }
   };
@@ -98,13 +97,16 @@ const WorkSheet = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (isError) return <p className="text-red-500 dark:text-red-400">Error loading data</p>;
+  if (isError)
+    return (
+      <p className="text-red-500">
+        Error loading data
+      </p>
+    );
 
   return (
-    <div className="p-6 max-w-5xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-md">
-      <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-        📝 Work Sheet
-      </h2>
+    <div className="p-4 max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-md">
+      <h2 className="text-3xl font-bold mb-6  text-gray-900  dark:text-white">📝 Work Sheet</h2>
 
       {/* Form */}
       <form
@@ -114,7 +116,7 @@ const WorkSheet = () => {
         <select
           value={tasks}
           onChange={(e) => setTasks(e.target.value)}
-          className="select select-bordered w-full dark:bg-gray-800 dark:text-white"
+          className="select select-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
           required
         >
           <option value="">Select Task</option>
@@ -129,14 +131,14 @@ const WorkSheet = () => {
           placeholder="Hours"
           value={hours}
           onChange={(e) => setHours(e.target.value)}
-          className="input input-bordered w-full dark:bg-gray-800 dark:text-white"
+          className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
           required
         />
 
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          className="input input-bordered w-full dark:bg-gray-800 dark:text-white"
+          className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
           dateFormat="yyyy-MM-dd"
         />
 
@@ -151,41 +153,38 @@ const WorkSheet = () => {
 
       {/* Table */}
       <div className="overflow-x-auto rounded-lg shadow">
-        <table className="table w-full bg-white dark:bg-gray-800 dark:text-white rounded-lg">
-          <thead className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white">
-            <tr>
+        <table className="table w-full bg-white text-gray-900 rounded-lg">
+          <thead className="bg-gray-200 text-gray-800">
+            <tr className="bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white">
               <th>Task</th>
               <th>Hours</th>
               <th>Date</th>
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody className="text-gray-700 dark:text-gray-300">
+          <tbody className="text-gray-700">
             {workList.length === 0 ? (
               <tr>
-                <td colSpan="4" className="text-center py-6 dark:text-gray-400">
+                <td colSpan="4" className="text-center py-6 bg-white text-gray-800 dark:bg-gray-800 dark:text-white">
                   No tasks added yet.
                 </td>
               </tr>
             ) : (
               workList.map((item) => (
-                <tr
-                  key={item._id}
-                  className="text-black dark:text-white"
-                >
+                <tr key={item._id} className="bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white">
                   <td>{item.tasks}</td>
                   <td>{item.hours}</td>
                   <td>{item.date}</td>
                   <td>
                     <button
                       onClick={() => setEditing(item)}
-                      className="text-blue-600 dark:text-blue-400 hover:underline mr-4"
+                      className="text-blue-600 hover:underline mr-4"
                     >
                       🖊 Edit
                     </button>
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="text-red-600 dark:text-red-400 hover:underline"
+                      className="text-red-600 hover:underline"
                     >
                       ❌ Delete
                     </button>

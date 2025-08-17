@@ -59,8 +59,8 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
       className="relative z-50"
     >
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-        <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-          <DialogTitle className="font-bold">Deactivate account</DialogTitle>
+        <DialogPanel className="max-w-lg space-y-4 border bg-white dark:bg-gray-800 p-12">
+          <DialogTitle className="font-bold text-gray-800 poppins-regular dark:text-white">Payment Request</DialogTitle>
 
           <form
             onSubmit={handlePayment}
@@ -68,37 +68,37 @@ const PayModal = ({ isOpen, setIsOpen, userData }) => {
           >
             <div className="mb-1 flex flex-col gap-6">
               <div className="w-full max-w-sm min-w-[200px]">
-                <label className="block mb-2 text-sm text-slate-600">
+                <label className="block mb-2 text-sm  text-gray-800 poppins-regular dark:text-white">
                   Your Salary
                 </label>
                 <input
                   type="text"
                   defaultValue={salary}
                   name="salary"
-                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                  placeholder="Your salary"
+                  className="w-full bg-transparent placeholder:text-slate-200 text-slate-700 text-sm border border-slate-100 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  placeholder="Your salary "
                   readOnly
                 />
               </div>
               <div className="w-full max-w-sm min-w-[200px]">
-                <label className="block mb-2 text-sm text-slate-600">
+                <label className="block mb-2 text-sm text-gray-800 poppins-regular dark:text-white">
                   Payment Month
                 </label>
                 <input
                   type="text"
                   name="month"
-                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  className="w-full bg-transparent placeholder:text-slate-200 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Your payment Month"
                 />
               </div>
               <div className="w-full max-w-sm min-w-[200px]">
-                <label className="block mb-2 text-sm text-slate-600">
+                <label className="block mb-2 text-sm text-gray-800 poppins-regular dark:text-white">
                   Payment Year
                 </label>
                 <input
                   type="text"
                   name="year"
-                  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                  className="w-full bg-transparent placeholder:text-slate-200 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                   placeholder="Payment Year"
                 />
               </div>

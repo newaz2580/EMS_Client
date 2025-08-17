@@ -4,6 +4,9 @@ import Testimonials from '../Testimonials/Testimonials';
 import ServicesSection from '../Services/ServicesSection';
 import OurTeam from '../OurTeam/OurTeam';
 import WhyChooseUs from '../WhyChooseUs/WhyChooseUs';
+import CompanyMilestones from '../CompanyMilestones/CompanyMilestones';
+import EmployeeAchievements from '../EmployeeAchievements/EmployeeAchievements';
+import JoinOurTeam from '../JoinOurTeam/JoinOurTeam';
 
 const Home = () => {
     return (
@@ -13,6 +16,9 @@ const Home = () => {
             <Testimonials/>
             <OurTeam/>
             <WhyChooseUs/>
+            <CompanyMilestones/>
+            <EmployeeAchievements/>
+            <JoinOurTeam/>
         </div>
     );
 };

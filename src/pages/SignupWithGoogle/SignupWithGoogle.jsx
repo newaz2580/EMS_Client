@@ -19,6 +19,8 @@ const SignupWithGoogle = () => {
         userData.designation='Sales Assistant';
         userData.bank_account_no='254687562322';
         userData.salary='25000';
+        userData.phone='+8801687678113';
+        userData.address='Dhaka,Bangladesh'
         userData.status=false;
         userData.role="Employee"
         saveUserInfo(userData)

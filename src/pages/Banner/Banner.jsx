@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Banner = () => {
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <div className="w-full">
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
@@ -12,21 +12,19 @@ const Banner = () => {
         showStatus={false}
         interval={3000}
         transitionTime={800}
-        // stopOnHover={false}
-        // // swipeable={true}
-        // emulateTouch={false}
+       
       >
         <div>
           <img
             className="max-h-[500px] w-full object-cover"
-            src="https://i.ibb.co/gbh0VYvk/banner-1.webp"
+            src="https://i.ibb.co.com/jk9Mx73c/1000-F-295425800-ISOl-I2g0-BSnp-LAcwt9u-TWzu0tb-Ylu-MB2.jpg"
             alt="Banner 1"
           />
         </div>
         <div>
           <img
             className="max-h-[500px] w-full object-cover"
-            src="https://i.ibb.co/674ttPz9/banner-2.jpg"
+            src="https://i.ibb.co.com/d4cgSCQc/image-2.jpg"
             alt="Banner 2"
           />
         </div>

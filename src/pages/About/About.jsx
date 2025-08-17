@@ -38,7 +38,7 @@ const About = () => {
         {/* Right Side - Image/Illustration */}
         <div className="flex justify-center">
           <img
-            src="https://i.ibb.co/4mrjshC/employee-management.png"
+            src="https://i.ibb.co.com/q37ySq2s/dddd.jpg"
             alt="EMS Illustration"
             className="rounded-2xl shadow-lg w-full md:w-4/5"
           />

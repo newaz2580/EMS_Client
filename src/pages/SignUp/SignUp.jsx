@@ -67,7 +67,7 @@ const Signup = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen">
         <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create an account
             </h1>
 
@@ -83,7 +83,7 @@ const Signup = () => {
                     name="name"
                     placeholder="Enter your name"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
 
@@ -96,7 +96,7 @@ const Signup = () => {
                     name="designation"
                     placeholder="e.g., Sales Assistant"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -112,7 +112,7 @@ const Signup = () => {
                     name="email"
                     placeholder="your@email.com"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -124,7 +124,7 @@ const Signup = () => {
                     name="password"
                     placeholder="••••••••"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -140,7 +140,7 @@ const Signup = () => {
                     name="phone"
                     placeholder="+8801XXXXXXXXX"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -152,7 +152,7 @@ const Signup = () => {
                     name="address"
                     placeholder="Enter your address"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -168,7 +168,7 @@ const Signup = () => {
                     name="account_no"
                     placeholder="1234567890"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -180,7 +180,7 @@ const Signup = () => {
                     name="salary"
                     placeholder="e.g., 50000"
                     required
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -196,7 +196,7 @@ const Signup = () => {
                     name="image"
                     accept="image/*"
                     required
-                    className="file-input file-input-bordered w-full"
+                    className="input input-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -208,7 +208,7 @@ const Signup = () => {
                     value={userRole}
                     onChange={(e) => setUserRole(e.target.value)}
                     required
-                    className="select select-bordered w-full"
+                    className="select select-bordered w-full bg-gray-100  text-gray-900 dark:bg-gray-900 dark:text-white"
                   >
                     <option value="" disabled>
                       -- Select Role --
